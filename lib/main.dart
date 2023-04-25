@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:bankhoo/wish.dart';
+import 'package:bankhoo/theme.dart';
 
 void main() {
   runApp(const MainScreen());
@@ -13,7 +15,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  List<Widget> listWidget = const [BodyMainScreen(), ];
+  List<Widget> listWidget = const [BodyMainScreen(), WishScreen() ];
+  List<String> listTitle = const ["BankHOO", "Wish" ];
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -23,9 +26,30 @@ class _MainScreenState extends State<MainScreen> {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                decoration: const BoxDecoration(color: Colors.blue),
+                child: Column(
+                  children: const[
+                      Center(child: Text("ECommerce", style: AppTheme.titleDrawerHead,)),
+                      SizedBox(
+                        height: 20,
+                        child: Icon(Icons.eco_outlined, size: 70,),
+                      ),
+                    ],
+                  ),
+              ),
+
+              ListTile( title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){},),
+              ListTile( title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
+            ],
+          ),
+        ),
         // appBar
         appBar: AppBar(
-          title: const Center(child: Text("BankHOO")),
+          title: Center(child: Text(listTitle.elementAt(selectedIndex))),
         ),
         // body
         body: SingleChildScrollView(
@@ -63,7 +87,13 @@ class _BodyMainScreenState extends State<BodyMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      margin: const EdgeInsets.all(10),
+      child: Column(children: const[
+        Text("List Article")
+      ]),
+    );
   }
 
 }
+
