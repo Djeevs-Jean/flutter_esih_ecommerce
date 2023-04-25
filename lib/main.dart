@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/wish.dart';
 import 'package:bankhoo/theme.dart';
+import 'package:bankhoo/services/api_service.dart';
+import 'package:bankhoo/models/articles.dart';
 
 void main() {
   runApp(const MainScreen());
@@ -85,12 +87,34 @@ class BodyMainScreen extends StatefulWidget {
 
 class _BodyMainScreenState extends State<BodyMainScreen> {
 
+  APIServices apiServices = APIServices();
+  List<Article> listArticles = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _initArticle();
+  }
+
+  _initArticle() async{
+    String urlEndpoit = "https://jsonplaceholder.typicode.com/posts?_limit=10";
+    try {
+      final articles = await apiServices.get(urlEndpoit);
+      setState(() {
+        listArticles = articles;
+      });
+    } catch (e) {
+      print(e);    
+    }
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      child: Column(children: const[
-        Text("List Article")
+      child: Column(children: [
+        Text("List Article $listArticles"),
       ]),
     );
   }
