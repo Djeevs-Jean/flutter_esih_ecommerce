@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 class APIServices {
 
   // static
-  Future<List<Article>> get(String urlEndpoit) async {
-    final response = await http.get(Uri.parse(urlEndpoit));
+  Future<List<Article>> get(String urlEndpoint) async {
+    final response = await http.get(Uri.parse(urlEndpoint));
     List<Article> listArticles = [];
 
     if (response.statusCode == 200) {

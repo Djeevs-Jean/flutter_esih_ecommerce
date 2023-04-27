@@ -6,4 +6,10 @@ class AppTheme{
     fontSize: 22,
     color: Colors.white 
   );
+  
+  static const TextStyle titleHead = TextStyle(
+    fontSize: 22,
+    color: Colors.white 
+  );
+
 }
