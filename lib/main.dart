@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bankhoo/wish.dart';
 import 'package:bankhoo/theme.dart';
 import 'package:bankhoo/services/api_service.dart';
-import 'package:bankhoo/models/articles.dart';
-import 'package:bankhoo/_widget/_widget_articles.dart';
+import 'package:bankhoo/data/data.dart';
+import 'package:bankhoo/pages/product_list.dart';
 
 void main() {
   runApp(const MainScreen());
@@ -26,6 +26,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      // routes: {
+      //   '/productList':(context) => ProductListPage(),
+      // },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -45,7 +48,10 @@ class _MainScreenState extends State<MainScreen> {
                     ],
                 ),
               ),
-              ListTile( title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){},),
+              ListTile( title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListPage(productList: Data.articles,)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListPage()));
+              },),
               ListTile( title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){},),
               ListTile( title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
             ],
@@ -55,8 +61,7 @@ class _MainScreenState extends State<MainScreen> {
           title: Center(child: Text(listTitle.elementAt(selectedIndex))),
           actions: [TextButton(onPressed: () {print("peye");}, child: const Text("PEYE", style: AppTheme.titleHead,))],
         ),
-        body:
-           Container(
+        body: Container(
             margin: const EdgeInsets.all(10),
             child: SingleChildScrollView(
               child: listWidget.elementAt(selectedIndex),
@@ -68,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(icon: Icon(Icons.update), label: 'Update Text'),
             BottomNavigationBarItem(icon: Icon(Icons.tab), label: 'Table'),  
           ],
-          
+
           onTap: (value) {
             setState(() {
               selectedIndex = value;
@@ -91,12 +96,13 @@ class BodyMainScreen extends StatefulWidget {
 class _BodyMainScreenState extends State<BodyMainScreen> {
 
   APIServices apiServices = APIServices();
-  List<Article> listArticles = [];
-  bool _isLoading = true;
+  List<String> listArticles = Data.articles;
+  List<String> listCategories = Data.categories;
+  bool _isLoading = false;
   
-  getArticles() async{
-    String urlEndpoint = "https://jsonplaceholder.typicode.com/posts?_limit=10";
-    // String urlEndpoint = "https://fakestoreapi.com/products";
+  /* getArticles() async{
+    // String urlEndpoint = "https://jsonplaceholder.typicode.com/posts?_limit=10";
+    String urlEndpoint = "https://fakestoreapi.com/products?limit=8";
     try {
       var articles = await apiServices.get(urlEndpoint);
       setState(() {
@@ -108,27 +114,22 @@ class _BodyMainScreenState extends State<BodyMainScreen> {
     } catch (e) {
       
     }
-  }
+  } */
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getArticles();
+    // getArticles();
   }
-
-
-  final List<String> categories = ['Catégorie 1', 'Catégorie 2', 'Catégorie 3'];
-  final List<String> articles = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5', 'Article 6', 'Article 7', 'Article 8', 'Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5', 'Article 6', 'Article 7', 'Article 8', 'Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5', 'Article 6', 'Article 7', 'Article 8'];
-
 
   @override
   Widget build(BuildContext context) {
-    // return _isLoading ? const Center(child: CircularProgressIndicator()) :
-    return Column(
+    return _isLoading ? const Center(child: CircularProgressIndicator()) :
+      Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        ...categories.map((category) => Container(
+        ...listCategories.map((category) => Container(
           height: 120,
           child: Card(
             child: Center(child: Text(category)),
@@ -141,140 +142,12 @@ class _BodyMainScreenState extends State<BodyMainScreen> {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            ...articles.map((article) => Container(
-              child: Card(
-                child: Center(child: Text(article)),
-              ),
+            ...listArticles.map((article) => Card(
+              child: Center(child: Text(article),),
             )).toList()
           ],
         ),
       ],
     );
-
-    
-    // Column(
-    //     crossAxisAlignment: CrossAxisAlignment.stretch,
-    //     children: [
-    //       // Affichage des catégories
-    //       ...categories.map((category) => Container(height: 120, child: Card(
-    //         child: Center(
-    //           child: Text(category),
-    //         ),
-    //       ))).toList(),
-
-    //       // Affichage des articles
-    //       GridView.count(
-    //         crossAxisCount: 2, // 2 éléments par ligne
-    //         shrinkWrap: true,
-    //         physics: NeverScrollableScrollPhysics(),
-    //         children: [
-    //           ...articles.map((article) => Card(
-    //             child: Center(
-    //               child: Text(article),
-    //             ),
-    //           )).toList(),
-    //         ],
-    //       ),
-    //     ],
-    //   );
-    
-    // GridView.count(
-    //     crossAxisCount: 2, // 2 éléments par ligne
-    //     children: [
-    //       // Affichage des catégories
-    //       Column(
-
-    //         children: [
-    //           ...categories.map((category) => Card(
-    //         child: Center(
-    //           child: Text(category),
-    //         ),
-    //       )).toList(),
-    //         ],
-    //       )
-
-    //       // Affichage des articles
-    //       ...articles.map((article) => Card(
-    //         child: Center(
-    //           child: Text(article),
-    //         ),
-    //       )).toList(),
-    //     ],
-    //   );
-
-
-        // // Column(
-        // //   children: [
-        // //     const Text('Grille 1'),
-        //     GridView.count(
-        //       shrinkWrap: true,
-        //       crossAxisCount: 2,
-        //       children: const [
-        //         GridTile(
-        //           child: Text('Données 1a'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 1b'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 1c'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 1d'),
-        //         ),
-        //          GridTile(
-        //           child: Text('Données 1a'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 1b'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 1c'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 1d'),
-        //         ),
-        //          GridTile(
-        //           child: Text('Données 1a'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 1b'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 1c'),
-        //         ),
-        //         GridTile(
-        //           child: Text('Données 22'),
-        //         )
-        //       ],
-        //     );
-            
-
-        // // Column(
-        // //     children: [
-        // //     Container(
-        //       //  GridView.count(
-        //       // crossAxisCount: 2,
-        //       // children: listArticles.map((ite) => ArticleWidget(article: ite)).toList(),
-        //     // ),
-        //   //   )
-        //   // ],
-        // );
-
-        // margin: const EdgeInsets.all(10),
-        // child: Column(
-        //   children:  [
-        //     Text("Data"),
-        //     Container(
-        //       child: GridView.count(
-        //       crossAxisCount: 2,
-        //       // mainAxisSpacing: 22,
-        //       // crossAxisSpacing: 22,
-        //       children: listArticles.map((ite) => ArticleWidget(article: ite)).toList(),
-        //     ),
-        //     ),
-        //   ],
-        // )
-    // )
   }
 }
