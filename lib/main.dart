@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/theme.dart';
 import 'package:bankhoo/drawer_pages/page_1.dart';
+import 'package:bankhoo/data/data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,7 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
 
   var tltle = "EBoutikoo";
+  var data = Data.articles;
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +53,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   ],
                 ),
               ),
-              
+
               ListTile( title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Page1()));
               },),
               ListTile( title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Page2()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Page1(listArticles: data,)));
               },),
               ListTile( title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
             ],
