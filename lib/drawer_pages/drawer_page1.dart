@@ -15,22 +15,104 @@ class ProductsDrawerPage1 extends StatefulWidget {
 class _ProductsDrawerPage1State extends State<ProductsDrawerPage1> {
   @override
   Widget build(BuildContext context) {
+        final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(title: const Text("Actions")),
-      body:GridView.count(
-          crossAxisCount: 2, // 2 elements par colonnes,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            ...widget.listArticles.map((article) => Card(
-              child: Column(children: [
-                Image.network(widget.imageUrl, width: 156, height: 156,),
-                Center(child: Text(article)),
+      body:  GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          mainAxisExtent: 320
+        ), 
+        itemCount: widget.listArticles.length,
+        itemBuilder: (_, index) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.network(widget.imageUrl, fit: BoxFit.cover,),
+                Text(widget.listArticles[index], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
+                Text(widget.listArticles[index], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
+                Text(widget.listArticles[index], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
 
-              ],)
-            )).toList()
-          ],
-        ),
+
+              ],
+            ),
+          );
+        })
+      // count(
+      // crossAxisCount: 2,
+      // padding: EdgeInsets.all(16.0),
+      // children: widget.listArticles.map((article) {
+      //   return Card(
+      //     child: SingleChildScrollView(
+      //       child: Column(
+      //       crossAxisAlignment: CrossAxisAlignment.start,
+      //       children: [
+      //         Image.network(
+      //           widget.imageUrl,
+      //           fit: BoxFit.cover,
+      //           height: 150.0,
+      //         ),
+      //         Padding(
+      //           padding: EdgeInsets.all(8.0),
+      //           child: Column(
+      //             crossAxisAlignment: CrossAxisAlignment.start,
+      //             children: <Widget>[
+      //               Text(
+      //                 article,
+      //                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+      //               ),
+      //               SizedBox(height: 8.0),
+      //               Text(
+      //                 article,
+      //                 style: TextStyle(fontSize: 14.0),
+      //               ),
+      //               SizedBox(height: 8.0),
+      //               Text(
+      //                 '\$${article}',
+      //                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+      //               ),
+      //             ],
+      //           ),
+      //         ),
+      //         Row(
+      //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //           children: <Widget>[
+      //             IconButton(
+      //               icon: Icon(Icons.favorite_border),
+      //               onPressed: () {
+      //                 // Ajouter l'article aux favoris
+      //               },
+      //             ),
+      //             IconButton(
+      //               icon: Icon(Icons.shopping_cart),
+      //               onPressed: () {
+      //                 // Ajouter l'article au panier
+      //               },
+      //             ),
+      //           ],
+      //         ),
+      //       ],
+      //     ),
+      //     ),
+      //   );
+      // }).toList(),
+    // )
     );
   }
 }
