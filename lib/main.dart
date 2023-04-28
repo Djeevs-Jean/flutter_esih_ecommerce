@@ -1,26 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:bankhoo/theme.dart';
-import 'package:bankhoo/drawer_pages/page_1.dart';
-import 'package:bankhoo/data/data.dart';
-
+import 'package:bankhoo/app_theme.dart';
+import 'package:bankhoo/drawer_pages/drawer_page1.dart';
+import 'package:bankhoo/navigation_pages/navigation_pages1.dart';
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dynamic Drawer',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const HomePageScreen(),
-    );
-  }
+  runApp(MaterialApp(home: HomePageScreen()));
 }
 
 class HomePageScreen extends StatefulWidget {
@@ -32,12 +15,12 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
 
-  var tltle = "EBoutikoo";
-  var data = Data.articles;
-
+  List<Widget> listWidget = [BodyHomePageScreen(), NavigationPage1(), NavigationPage2()];
+  int selectedIndex = 0;
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
         drawer: Drawer(
           child: ListView(
             children: [
@@ -45,7 +28,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 decoration: const BoxDecoration(color: Colors.blue),
                 child: Column(
                   children: const[
-                    Center(child: Text("ECommerce")),
+                    Center(child: Text("ECommerce", style: AppTheme.titleDrawerHead,)),
                     SizedBox(
                       height: 20,
                       child: Icon(Icons.eco_outlined, size: 70,),
@@ -53,22 +36,49 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   ],
                 ),
               ),
-
+              
               ListTile( title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const DrawerPage1()));
               },),
               ListTile( title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Page1(listArticles: data,)));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DrawerPage2()));
               },),
               ListTile( title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
             ],
           ),
         ),
         appBar: AppBar(
-          title: Center(child: Text(tltle)),
-          actions: [TextButton(onPressed: () {print("peye");}, child: const Text("PEYE", style: AppTheme.titleHead,))],
-        ),
-        body: const Center(child: Text("Center"),),
+            title: const Center(child: Text("EBootikoo")),
+            actions: [TextButton(onPressed: () {print("peye");}, child: const Text("PEYE", style: AppTheme.titleHead,))],
+          ),
+          body: listWidget.elementAt(selectedIndex),
+          bottomNavigationBar: BottomNavigationBar(
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+              BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
+              BottomNavigationBarItem(icon: Icon(Icons.sell_outlined), label: "Panier"),
+            ],
+            onTap: (value) {
+              setState(() {
+                selectedIndex = value;
+              });
+            },
+            currentIndex: selectedIndex,
+          ),
     );
   }
 }
 
+class BodyHomePageScreen extends StatefulWidget {
+  const BodyHomePageScreen({Key? key}) : super(key: key);
+
+  @override
+  State<BodyHomePageScreen> createState() => _BodyHomePageScreenState();
+}
+
+class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text("Homepage"));
+  }
+}
