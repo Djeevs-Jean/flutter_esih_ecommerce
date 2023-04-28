@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:bankhoo/app_theme.dart';
+import 'package:bankhoo/data.dart';
+import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/drawer_pages/drawer_page1.dart';
 import 'package:bankhoo/navigation_pages/navigation_pages1.dart';
 void main() {
-  runApp(MaterialApp(home: HomePageScreen()));
+  runApp(const MaterialApp(home: HomePageScreen()));
 }
 
 class HomePageScreen extends StatefulWidget {
@@ -38,10 +39,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
               ),
               
               ListTile( title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const DrawerPage1()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const DrawerPage2()));
               },),
               ListTile( title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DrawerPage2()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsDrawerPage1()));
               },),
               ListTile( title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
             ],
@@ -51,8 +52,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
             title: const Center(child: Text("EBootikoo")),
             actions: [TextButton(onPressed: () {print("peye");}, child: const Text("PEYE", style: AppTheme.titleHead,))],
           ),
-          body: listWidget.elementAt(selectedIndex),
-          bottomNavigationBar: BottomNavigationBar(
+        body: SingleChildScrollView(
+            child: listWidget.elementAt(selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
@@ -70,7 +73,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
 }
 
 class BodyHomePageScreen extends StatefulWidget {
-  const BodyHomePageScreen({Key? key}) : super(key: key);
+  BodyHomePageScreen({Key? key}) : super(key: key);
+
+  final List listArticles = DataApp.articles;
+  final List listCategories = DataApp.categories;
+  final String imageUrl = "https://placehold.co/300x400.png";
+
 
   @override
   State<BodyHomePageScreen> createState() => _BodyHomePageScreenState();
@@ -79,6 +87,33 @@ class BodyHomePageScreen extends StatefulWidget {
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Homepage"));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: 18,),
+        const Padding( padding: EdgeInsets.only(left: 22),  child: Text("Top Category", style: AppTheme.titleTopcategorie,),),
+        ...widget.listCategories.map((category) => Container(
+          height: 120,
+          child: Card(
+            child: Center(child: Text(category)),
+
+          ),
+        )).toList(),
+        
+        const SizedBox(height: 18,),
+        const Padding( padding: EdgeInsets.only(left: 22),  child: Text("Top Produits", style: AppTheme.titleTopcategorie,),),
+        
+        GridView.count(
+          crossAxisCount: 2, // 2 elements par colonnes,
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          children: [
+            ...widget.listArticles.map((article) => Card(
+              child: Center(child: Text(article)),
+            )).toList()
+          ],
+        ),
+      ],
+    );
   }
 }
