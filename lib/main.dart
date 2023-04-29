@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bankhoo/article.dart';
+import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/drawer_pages/drawer_page1.dart';
 import 'package:bankhoo/navigation_pages/navigation_pages1.dart';

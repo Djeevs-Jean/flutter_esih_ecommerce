@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/data.dart';
 import 'package:bankhoo/_details/details_page.dart';
-import 'package:bankhoo/_widget.dart';
-import 'package:bankhoo/article.dart';
+import 'package:bankhoo/_widget/_widget_article.dart';
+import 'package:bankhoo/models/article.dart';
 
 class ProductsDrawerPage1 extends StatefulWidget {
   List listArticles = DataApp.getListArticles();

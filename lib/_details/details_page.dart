@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bankhoo/article.dart';
+import 'package:bankhoo/models/article.dart';
 
 class DetailPage extends StatefulWidget {
   final Article article;

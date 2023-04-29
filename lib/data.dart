@@ -1,4 +1,4 @@
-import 'package:bankhoo/article.dart';
+import 'package:bankhoo/models/article.dart';
 
 class DataApp {
     static List<Map> listArticles = [];
