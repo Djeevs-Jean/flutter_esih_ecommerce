@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/data.dart';
+import 'package:bankhoo/_details/details_page.dart';
 
 class ProductsDrawerPage1 extends StatefulWidget {
   final List listArticles = DataApp.articles;
@@ -9,11 +10,18 @@ class ProductsDrawerPage1 extends StatefulWidget {
   ProductsDrawerPage1({Key? key}) : super(key: key);
 
 
+
   @override
   State<ProductsDrawerPage1> createState() => _ProductsDrawerPage1State();
 }
 
 class _ProductsDrawerPage1State extends State<ProductsDrawerPage1> {
+
+  void navigateToArticleDetailPage(String article) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(data: article)));
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -30,7 +38,8 @@ class _ProductsDrawerPage1State extends State<ProductsDrawerPage1> {
         ), 
         itemCount: widget.listArticles.length,
         itemBuilder: (_, index) {
-          return Container(
+          return GestureDetector(
+            child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
@@ -67,6 +76,10 @@ class _ProductsDrawerPage1State extends State<ProductsDrawerPage1> {
 
               ],
             ),
+          ),
+          onTap: () {
+            navigateToArticleDetailPage(widget.listArticles[index]);
+          },
           );
         }),
       ),
