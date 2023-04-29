@@ -3,7 +3,7 @@ import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/pages/_pages_drawer/drawer_page1.dart';
 import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
-import 'package:bankhoo/_details/details_page.dart';
+import 'package:bankhoo/pages/_details/details_page.dart';
 
 void main() {
   runApp(const MaterialApp(home: HomePageScreen()));
