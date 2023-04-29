@@ -35,7 +35,7 @@ class ListCard extends StatelessWidget {
           Padding(padding: const EdgeInsets.all(8), 
             child: Column(
               children: [
-                Text(article.image, style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
+                Text(article.title, style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
                 const SizedBox(height: 8),
                 Text(article.description, style: AppTheme.desc,),
               ]
