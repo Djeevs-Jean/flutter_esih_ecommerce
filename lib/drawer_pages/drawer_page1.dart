@@ -5,6 +5,7 @@ import 'package:bankhoo/data.dart';
 class ProductsDrawerPage1 extends StatefulWidget {
   final List listArticles = DataApp.articles;
   final String imageUrl = "https://placehold.co/300x400.png";
+  final String description = "l'est toujours présent dans la liste des processus du système";
   ProductsDrawerPage1({Key? key}) : super(key: key);
 
 
@@ -15,11 +16,12 @@ class ProductsDrawerPage1 extends StatefulWidget {
 class _ProductsDrawerPage1State extends State<ProductsDrawerPage1> {
   @override
   Widget build(BuildContext context) {
-        final screenWidth = MediaQuery.of(context).size.width;
-
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(title: const Text("Actions")),
-      body:  GridView.builder(
+      body: Container(
+        margin: const EdgeInsets.all(10),
+        child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
@@ -44,16 +46,30 @@ class _ProductsDrawerPage1State extends State<ProductsDrawerPage1> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(widget.imageUrl, fit: BoxFit.cover,),
-                Text(widget.listArticles[index], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
-                Text(widget.listArticles[index], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
-                Text(widget.listArticles[index], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
-
+                Image.network(widget.imageUrl, fit: BoxFit.cover, width: double.infinity, height: 170,),
+                Padding(padding: EdgeInsets.all(8), 
+                  child: Column(
+                    children: [
+                      Text(widget.listArticles[index], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
+                      const SizedBox(height: 8),
+                      Text(widget.description, style: AppTheme.desc,),
+                    ]
+                  ),
+                ),
+                const SizedBox(height: 8,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart)),
+                  ],
+                ),
 
               ],
             ),
           );
-        })
+        }),
+      ),
       // count(
       // crossAxisCount: 2,
       // padding: EdgeInsets.all(16.0),

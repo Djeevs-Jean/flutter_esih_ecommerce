@@ -7,6 +7,10 @@ class AppTheme{
     color: Colors.white 
   );
 
+  static const TextStyle desc = TextStyle(
+    fontSize: 12,
+  );
+
   static const TextStyle titleTopcategorie = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
