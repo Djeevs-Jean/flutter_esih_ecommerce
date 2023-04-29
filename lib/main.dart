@@ -3,6 +3,8 @@ import 'package:bankhoo/data.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/drawer_pages/drawer_page1.dart';
 import 'package:bankhoo/navigation_pages/navigation_pages1.dart';
+import 'package:bankhoo/_details/details_page.dart';
+
 void main() {
   runApp(const MaterialApp(home: HomePageScreen()));
 }
@@ -16,7 +18,7 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
 
-  List<Widget> listWidget = [BodyHomePageScreen(), NavigationPage1(), NavigationPage2()];
+  List<Widget> listWidget = [BodyHomePageScreen(), NavigationFavorites(), NavigationPage2()];
   int selectedIndex = 0;
   
   @override
@@ -52,9 +54,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
             title: const Center(child: Text("EBootikoo")),
             actions: [TextButton(onPressed: () {print("peye");}, child: const Text("PEYE", style: AppTheme.titleHead,))],
           ),
-        body: SingleChildScrollView(
-            child: listWidget.elementAt(selectedIndex),
-        ),
+        body:  listWidget.elementAt(selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
@@ -73,47 +73,28 @@ class _HomePageScreenState extends State<HomePageScreen> {
 }
 
 class BodyHomePageScreen extends StatefulWidget {
+  final String description = "l'est toujours présent dans la liste des processus du système";
   BodyHomePageScreen({Key? key}) : super(key: key);
 
-  final List listArticles = DataApp.articles;
-  final List listCategories = DataApp.categories;
-  final String imageUrl = "https://placehold.co/300x400.png";
 
+  // final List listArticles = DataApp.articles;
+  // final List listCategories = DataApp.categories;
+  final String imageUrl = "https://placehold.co/300x400.png";
 
   @override
   State<BodyHomePageScreen> createState() => _BodyHomePageScreenState();
 }
 
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
+
+  void navigateToArticleDetailPage(String article) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(article: article)));
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const SizedBox(height: 18,),
-        const Padding( padding: EdgeInsets.only(left: 22),  child: Text("Top Category", style: AppTheme.titleTopcategorie,),),
-        ...widget.listCategories.map((category) => Container(
-          height: 120,
-          child: Card(
-            child: Center(child: Text(category)),
-
-          ),
-        )).toList(),
-        
-        const SizedBox(height: 18,),
-        const Padding( padding: EdgeInsets.only(left: 22),  child: Text("Top Produits", style: AppTheme.titleTopcategorie,),),
-        
-        GridView.count(
-          crossAxisCount: 2, // 2 elements par colonnes,
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            ...widget.listArticles.map((article) => Card(
-              child: Center(child: Text(article)),
-            )).toList()
-          ],
-        ),
-      ],
-    );
+    final screenWidth = MediaQuery.of(context).size.width;
+    return const Center(child: Text("HoePage"),);
   }
 }
