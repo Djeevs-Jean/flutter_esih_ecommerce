@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/data.dart';
 import 'package:bankhoo/_details/details_page.dart';
-import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/article.dart';
 import 'package:bankhoo/_widget.dart';
 
@@ -59,16 +58,45 @@ class _NavigationFavoritesState extends State<NavigationFavorites> {
 }
 
 
-class NavigationPage2 extends StatefulWidget {
-  const NavigationPage2({super.key});
+class CartsPage2 extends StatefulWidget {
+  List listCarts = DataApp.listCart;
+  CartsPage2({super.key});
+
 
   @override
-  State<NavigationPage2> createState() => _NavigationPage2State();
+  State<CartsPage2> createState() => _CartsPage2State();
 }
 
-class _NavigationPage2State extends State<NavigationPage2> {
+class _CartsPage2State extends State<CartsPage2> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("NavigationPage 2 NavigationPage2"));
+    return Container(
+        margin: const EdgeInsets.all(10),
+        child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          mainAxisExtent: 320
+        ), 
+        itemCount: widget.listCarts.length,
+        itemBuilder: (_, index) {
+          return ListCard(
+            article: widget.listCarts[index],
+            onCartTap: () {
+              print("images");
+              // addToCart(widget.listArticles[index]);
+            },
+            onFavoriteTap: () {
+              print("favorite");
+              // favoritesTap(widget.listArticles[index]);
+            },
+            onTapDetailsMeth: () {
+              print("vart");
+              // navigateToArticleDetailPage(widget.listArticles[index]);
+            },
+          );
+        })
+    );
   }
 }

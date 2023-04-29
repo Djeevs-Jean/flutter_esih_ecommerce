@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bankhoo/data.dart';
+import 'package:bankhoo/article.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/drawer_pages/drawer_page1.dart';
 import 'package:bankhoo/navigation_pages/navigation_pages1.dart';
@@ -18,7 +18,7 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
 
-  List<Widget> listWidget = [BodyHomePageScreen(), NavigationFavorites(), NavigationPage2()];
+  List<Widget> listWidget = [BodyHomePageScreen(), NavigationFavorites(), CartsPage2()];
   int selectedIndex = 0;
   
   @override
@@ -87,7 +87,7 @@ class BodyHomePageScreen extends StatefulWidget {
 
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
 
-  void navigateToArticleDetailPage(String article) {
+  void navigateToArticleDetailPage(Article article) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(article: article)));
   }
 
@@ -95,6 +95,6 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return const Center(child: Text("HoePage"),);
+    return const Center(child: Text("HomePage"),);
   }
 }
