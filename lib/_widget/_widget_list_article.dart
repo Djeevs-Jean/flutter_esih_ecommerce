@@ -73,8 +73,7 @@ class _WidgetListProduitState extends State<WidgetListProduit> {
 }
 
 class _ArticleWidgetSingle extends StatelessWidget {
-  final String article;
-  final String imageUrl = "https://placehold.co/300x400.png";
+  final Article article;
   const _ArticleWidgetSingle({Key? key, required this.article}) : super(key: key);
 
   @override
@@ -85,77 +84,60 @@ class _ArticleWidgetSingle extends StatelessWidget {
         borderRadius: BorderRadius.circular(10)
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InkWell(onTap: () {}, child: Container(
-            margin: EdgeInsets.all(8),
-            child: Image.network(imageUrl, fit: BoxFit.cover, width: double.infinity, height: 120, ),
-          ),),
-          Container(
-            padding: EdgeInsets.only(bottom: 8),
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 8),
-                child: Text("Article",style:  TextStyle(
-                  color: Colors.blue,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),),
-              ),
-
+          Image.network(article.image, width: double.infinity, height: 120, fit: BoxFit.cover, ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(article.title, style: const TextStyle( fontSize: 18, fontWeight: FontWeight.bold, ),),
+                const SizedBox(height: 8),
+                Text(article.description, style: const TextStyle( fontSize: 16, ),),
+                const SizedBox(height: 10),
+                Text('Prix :${article.price}\$', style: const TextStyle( fontSize: 16, fontWeight: FontWeight.bold,),),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(icon: const Icon(Icons.favorite_border),onPressed: () {}),
+                    IconButton(icon: const Icon(Icons.add_shopping_cart),onPressed: () {}),
+                  ],
+                ),
+              ],
+            ),
           ),
-
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text("Write description of products", style: TextStyle(
-              fontSize: 15, 
-              color: Colors.blue,
-            ),),
-          ),
-
-          const SizedBox(height: 8,),
-          
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10,),
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(onPressed: (() => null), icon: const Icon(Icons.favorite)),
-              IconButton(onPressed: (() => null), icon: const Icon(Icons.shopping_cart)),
-            ],
-          ),
-          ),
-            // Image.network(imageUrl, fit: BoxFit.cover, width: double.infinity, height: 170,),
         ],
-      ),
+      )
     );
   }
 }
 
 
-class ProductListWidget extends StatefulWidget {
+class ArticleListWidget extends StatefulWidget {
   final List<Article> listArticles;
-  // final List<dynamic> listFavorites;
-  // final List<dynamic> listCart;
-  const ProductListWidget({Key? key, required this.listArticles}) : super(key: key);
+  const ArticleListWidget({Key? key, required this.listArticles}) : super(key: key);
 
   @override
-  State<ProductListWidget> createState() => _ProductListWidgetState();
+  State<ArticleListWidget> createState() => _ArticleListWidgetState();
 }
 
 
-class _ProductListWidgetState extends State<ProductListWidget> {
+class _ArticleListWidgetState extends State<ArticleListWidget> {
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      padding: EdgeInsets.all(10),
-      childAspectRatio: 0.50,
+      padding: const EdgeInsets.all(10),
+      childAspectRatio: 200/400,
+      // childAspectRatio: 0.45,
+      mainAxisSpacing: 8,
+      crossAxisSpacing: 10,
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
       shrinkWrap: true,
-      children: const [
-        _ArticleWidgetSingle(article: "Data"),
-      ],
+      children: widget.listArticles.map((article) => _ArticleWidgetSingle(article: article)).toList(),
     );
   }
 }

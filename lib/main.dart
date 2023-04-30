@@ -127,7 +127,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
         ),
 
         // WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
-        ProductListWidget(listArticles: listArticles),
+        ArticleListWidget(listArticles: listArticles),
 
       ],
     );
