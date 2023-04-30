@@ -27,7 +27,7 @@ class DataApp {
 
     static List<Article> getListArticles() {
       _getListArticles();
-      List<Article> articles = listArticles.map((article) => Article(id: article['id'], title: article['title'], price: article['price'], description: article['description'], image: article['image'], inCart: false, isFavorite: false)).toList();
+      List<Article> articles = listArticles.map((article) => Article(id: article['id'], title: article['title'], price: article['price'], category: article['category'], description: article['description'], image: article['image'], inCart: false, isFavorite: false)).toList();
       return articles;
     }
 

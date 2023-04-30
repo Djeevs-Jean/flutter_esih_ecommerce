@@ -8,6 +8,7 @@ import 'package:bankhoo/pages/_pages_drawer/drawer_page.dart';
 import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/_widget/_widget_article.dart';
 import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
+import 'package:bankhoo/services/_product_services.dart';
 
 void main() {
   runApp(const MaterialApp(home: HomePageScreen()));
@@ -28,7 +29,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+  return Scaffold(
         drawer: Drawer(
           child: ListView(
             children: [
@@ -88,11 +89,27 @@ class BodyHomePageScreen extends StatefulWidget {
 
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
 
-  List<Article> listArticles = DataApp.getListArticles();
-  List<String> listCategories = DataApp.listCategories;
-  List listFavorites = DataApp.listFavorites;
-  List listCart = DataApp.listCart;
+  List<Article> _newArticles = [];
+  // List<Article> listArticles = DataApp.getListArticles();
+  // List<String> listCategories = DataApp.listCategories;
+  // List listFavorites = DataApp.listFavorites;
+  // List listCart = DataApp.listCart;
+  
 
+  Future<void> _fetchArticles() async {
+    final articles = await ArticleService.getArticles();
+    setState(() {
+      _newArticles = articles as List<Article>;
+    });
+  }
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("init state");
+    _fetchArticles();
+  }
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -115,7 +132,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
                   color: Colors.blue,
                 ),),
               ),
-              CategoryWidget(listCategory: listCategories)
+              // CategoryWidget(listCategory: listCategories)
             ],
           ),
         ),
@@ -131,8 +148,8 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
         ),
 
         SingleChildScrollView(
-          child:
-        ArticleListWidget(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+          // child:
+        // ArticleListWidget(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
         ),
       ],
     );

@@ -20,3 +20,5 @@ ListView.builder(
         );
         },
       );
+
+      flutter pub add shared_preferences: ^2.0.13
