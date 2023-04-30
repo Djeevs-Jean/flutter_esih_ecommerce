@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class DetailCategory extends StatefulWidget {
   final String category;
   final List<Article> listArticle;
-
   const DetailCategory({super.key, required this.category, required this.listArticle});
 
   @override
@@ -16,24 +15,37 @@ class _DetailCategoryState extends State<DetailCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.category)),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            // Image.network(widget.imageUrl, fit: BoxFit.cover, width: double.infinity, height: 200,),
-            // Padding(padding: EdgeInsets.all(12), 
-            //   child: Column(children: [
-            //     const SizedBox(height: 16,),
-            //     Text("Article ${widget.category}", style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
-            //     const SizedBox(height: 16,),
-            //     Text(widget.category.description, style: const TextStyle(fontSize: 22, ),),
-            //   ]),
-            // ),
-          ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Text(widget.category, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+          ),
 
-           
-        ),
-      ),
+          Expanded(child: ListView.builder(
+              itemCount: widget.listArticle.length,
+              itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                leading: Image.network(
+                    widget.listArticle[index].image,
+                    width: 50,
+                    height: 50,
+                  ),
+                  title: Text(widget.listArticle[index].title),
+                  subtitle: Text('\$${widget.listArticle[index].price}'),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.add_shopping_cart),
+                    onPressed: () {
+                      // Ajouter le produit au panier ici
+                    },
+                  ),
+                );
+              },
+              ),
+          ),
+        ],
+      )
     );
   }
 }

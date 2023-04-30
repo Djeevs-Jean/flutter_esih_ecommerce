@@ -1,6 +1,7 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
 import 'package:bankhoo/pages/_details/details_category.dart';
+import 'package:bankhoo/data.dart';
 
 class CategoryWidgetSingle extends StatefulWidget {
  final String category;
@@ -51,7 +52,7 @@ class CategoryListWidget extends StatefulWidget {
 }
 
 class _CategoryListWidgetState extends State<CategoryListWidget> {
-  final List<Article> listArticle_tries = [];
+  final List<Article> listArticle_tries = DataApp.getListArticles();
 
   void navigateToArticleDetailPage(String category, List<Article> listArticle) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => DetailCategory(category: category, listArticle: listArticle)));
