@@ -72,3 +72,90 @@ class _WidgetListProduitState extends State<WidgetListProduit> {
   }
 }
 
+class _ArticleWidgetSingle extends StatelessWidget {
+  final String article;
+  final String imageUrl = "https://placehold.co/300x400.png";
+  const _ArticleWidgetSingle({Key? key, required this.article}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10)
+      ),
+      child: Column(
+        children: [
+          InkWell(onTap: () {}, child: Container(
+            margin: EdgeInsets.all(8),
+            child: Image.network(imageUrl, fit: BoxFit.cover, width: double.infinity, height: 120, ),
+          ),),
+          Container(
+            padding: EdgeInsets.only(bottom: 8),
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 8),
+                child: Text("Article",style:  TextStyle(
+                  color: Colors.blue,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),),
+              ),
+
+          ),
+
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Text("Write description of products", style: TextStyle(
+              fontSize: 15, 
+              color: Colors.blue,
+            ),),
+          ),
+
+          const SizedBox(height: 8,),
+          
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10,),
+            child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(onPressed: (() => null), icon: const Icon(Icons.favorite)),
+              IconButton(onPressed: (() => null), icon: const Icon(Icons.shopping_cart)),
+            ],
+          ),
+          ),
+            // Image.network(imageUrl, fit: BoxFit.cover, width: double.infinity, height: 170,),
+        ],
+      ),
+    );
+  }
+}
+
+
+class ProductListWidget extends StatefulWidget {
+  final List<Article> listArticles;
+  // final List<dynamic> listFavorites;
+  // final List<dynamic> listCart;
+  const ProductListWidget({Key? key, required this.listArticles}) : super(key: key);
+
+  @override
+  State<ProductListWidget> createState() => _ProductListWidgetState();
+}
+
+
+class _ProductListWidgetState extends State<ProductListWidget> {
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      padding: EdgeInsets.all(10),
+      childAspectRatio: 0.50,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      shrinkWrap: true,
+      children: const [
+        _ArticleWidgetSingle(article: "Data"),
+      ],
+    );
+  }
+}

@@ -94,7 +94,6 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
     return ListView(
       children: [
         Container(
-          height: 500,
           padding: const EdgeInsets.only(top: 15),
           decoration: const BoxDecoration(
           ),
@@ -116,8 +115,20 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
             ],
           ),
         ),
+      
+        Container(
+          alignment: Alignment.centerLeft,
+          margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          child: Text("Articles", style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.blue,
+          ),),
+        ),
 
-        
+        // WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+        ProductListWidget(listArticles: listArticles),
+
       ],
     );
 
