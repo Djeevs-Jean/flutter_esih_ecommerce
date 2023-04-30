@@ -4,24 +4,23 @@ import 'package:bankhoo/pages/_details/details_page.dart';
 import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/_widget/_widget_article.dart';
 
-class NavigationFavorites extends StatefulWidget {
+class FavoritePage extends StatefulWidget {
   // List listFavorites = DataApp.listFavorites;
   final String imageUrl = "https://placehold.co/300x400.png";
   final String description = "l'est toujours présent dans la liste des processus du système";
   List listFavorites = DataApp.listFavorites;
 
-  NavigationFavorites({super.key});
+  FavoritePage({super.key});
 
   @override
-  State<NavigationFavorites> createState() => _NavigationFavoritesState();
+  State<FavoritePage> createState() => _FavoritePageState();
 }
 
-class _NavigationFavoritesState extends State<NavigationFavorites> {
+class _FavoritePageState extends State<FavoritePage> {
 
   void navigateToArticleDetailPage(Article article) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(article: article)));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class _NavigationFavoritesState extends State<NavigationFavorites> {
         ), 
         itemCount: widget.listFavorites.length,
         itemBuilder: (_, index) {
-          return ListCard(
+          return ArticleWidget(
             article: widget.listFavorites[index],
             onCartTap: () {
               print("images");
@@ -58,16 +57,16 @@ class _NavigationFavoritesState extends State<NavigationFavorites> {
 }
 
 
-class CartsPage2 extends StatefulWidget {
+class CartPage extends StatefulWidget {
   List listCarts = DataApp.listCart;
-  CartsPage2({super.key});
-
+  CartPage({super.key});
 
   @override
-  State<CartsPage2> createState() => _CartsPage2State();
+  State<CartPage> createState() => _CartPageState();
 }
 
-class _CartsPage2State extends State<CartsPage2> {
+class _CartPageState extends State<CartPage> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,7 +80,7 @@ class _CartsPage2State extends State<CartsPage2> {
         ), 
         itemCount: widget.listCarts.length,
         itemBuilder: (_, index) {
-          return ListCard(
+          return ArticleWidget(
             article: widget.listCarts[index],
             onCartTap: () {
               print("images");

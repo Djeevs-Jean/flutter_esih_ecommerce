@@ -5,9 +5,7 @@ class DataApp {
     static List<Article> listFavorites = [];
     static List<Article> listCart = [];
 
-    
-
-  //   static final List<String> categories = ['Catégorie 1', 'Catégorie 2', 'Catégorie 3'];
+    static final List<String> listCategories = ['Catégorie 1', 'Catégorie 2', 'Catégorie 3'];
   //   final dynamic articles = {'id': 1, 'tile': 'title 1', 'price': 90, 'description': "l'est toujours présent dans la liste des processus du système", 'image':"https://placehold.co/300x400.png" };
   //   final String imageUrl = "https://placehold.co/300x400.png";
   // final String description = "l'est toujours présent dans la liste des processus du système";
@@ -26,7 +24,7 @@ class DataApp {
       }
     }
 
-    static getListArticles() {
+    static List<Article> getListArticles() {
       _getListArticles();
       List<Article> articles = listArticles.map((article) => Article(id: article['id'], title: article['title'], price: article['price'], description: article['description'], image: article['image'], inCart: false, isFavorite: false)).toList();
       return articles;

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 
-class ListCard extends StatelessWidget {
+
+class ArticleWidget extends StatelessWidget {
   final Article article;
   final VoidCallback onTapDetailsMeth;
   final VoidCallback onFavoriteTap;
   final VoidCallback onCartTap;
 
-  const ListCard({Key? key, required this.article, required this.onTapDetailsMeth, required this.onFavoriteTap, required this.onCartTap }) : super(key: key);
+  const ArticleWidget({Key? key, required this.article, required this.onTapDetailsMeth, required this.onFavoriteTap, required this.onCartTap }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

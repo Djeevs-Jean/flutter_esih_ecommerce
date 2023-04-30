@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/utils/app_theme.dart';
+import 'package:bankhoo/data.dart';
+import 'package:bankhoo/_widget/_widget_article.dart';
+import 'package:bankhoo/_widget/_widget_category.dart';
 import 'package:bankhoo/pages/_pages_drawer/drawer_page1.dart';
 import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
 import 'package:bankhoo/pages/_details/details_page.dart';
@@ -18,7 +21,7 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
 
-  List<Widget> listWidget = [BodyHomePageScreen(), NavigationFavorites(), CartsPage2()];
+  List<Widget> listWidget = [BodyHomePageScreen(), FavoritePage(), CartPage()];
   int selectedIndex = 0;
   
   @override
@@ -44,7 +47,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const DrawerPage2()));
               },),
               ListTile( title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsDrawerPage1()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListPage()));
               },),
               ListTile( title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
             ],
@@ -59,7 +62,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
-              BottomNavigationBarItem(icon: Icon(Icons.sell_outlined), label: "Panier"),
+              BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Panier"),
             ],
             onTap: (value) {
               setState(() {
@@ -73,13 +76,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
 }
 
 class BodyHomePageScreen extends StatefulWidget {
-  final String description = "l'est toujours présent dans la liste des processus du système";
+  final List listCategories = DataApp.listCategories;
+  final List listArticles = DataApp.getListArticles();
+  List listFavorites = DataApp.listFavorites;
+  List listCart = DataApp.listCart;
+
   BodyHomePageScreen({Key? key}) : super(key: key);
-
-
-  // final List listArticles = DataApp.articles;
-  // final List listCategories = DataApp.categories;
-  final String imageUrl = "https://placehold.co/300x400.png";
 
   @override
   State<BodyHomePageScreen> createState() => _BodyHomePageScreenState();
@@ -91,10 +93,37 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
     Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(article: article)));
   }
 
+  void favoritesTap(Article article) {
+      setState(() {
+        print(article);
+        if (!widget.listFavorites.contains(article)) {
+          widget.listFavorites.add(article);
+        }
+      });
+    }
+
+  void addToCart(Article article) {
+      setState(() {
+        print(article);
+        if (!widget.listCart.contains(article)) {
+          widget.listCart.add(article);
+        }
+      });
+    }
+
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    return const Center(child: Text("HomePage"),);
+    return Container(
+      margin: const EdgeInsets.all(5),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const Padding(padding: EdgeInsets.only(left: 10), child: Text("Top Category")),
+          ...widget.listCategories.map((category) => WidgetCategory(category: category)).toList(),
+          
+        ]
+      ),
+    );
   }
 }
