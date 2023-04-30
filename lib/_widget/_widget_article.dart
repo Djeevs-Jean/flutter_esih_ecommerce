@@ -121,37 +121,4 @@ class _ArticleListWidgetState extends State<ArticleListWidget> {
       },
     );
   }
-
-
-
-  // @override
-  // Widget build(BuildContext context) {
-
-
-    // return GridView.builder(
-    //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-    //       crossAxisCount: 2,
-    //       crossAxisSpacing: 10,
-    //       mainAxisSpacing: 10,
-    //       mainAxisExtent: 320
-    //     ), 
-    //     itemCount: widget.listArticles.length,
-    //     itemBuilder: (_, index) {
-    //       return ArticleWidget(
-    //         article: widget.listArticles[index],
-    //         onCartTap: () {
-    //           print("images");
-    //           addToCart(widget.listArticles[index]);
-    //         },
-    //         onFavoriteTap: () {
-    //           print("favorite");
-    //           favoritesTap(widget.listArticles[index]);
-    //         },
-    //         onTapDetailsMeth: () {
-    //           print("vart");
-    //           navigateToArticleDetailPage(widget.listArticles[index]);
-    //         },
-    //       );
-    // });
-  // }
 }

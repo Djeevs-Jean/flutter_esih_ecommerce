@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/data.dart';
+import 'package:bankhoo/pages/_details/payement_page.dart';
+import 'package:bankhoo/pages/_details/login_page.dart';
 import 'package:bankhoo/_widget/_widget_category.dart';
 import 'package:bankhoo/pages/_pages_drawer/drawer_page.dart';
 import 'package:bankhoo/models/article.dart';
@@ -21,6 +23,7 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
 
   List<Widget> listWidget = [const BodyHomePageScreen(), FavoritePage(), CartPage()];
+  List<String> listWidgetTitle = ["EBootikoo", "Favorite Page", "Cart Page"];
   int selectedIndex = 0;
   
   @override
@@ -43,7 +46,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               ),
               
               ListTile( title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const DrawerPage2()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
               },),
               ListTile( title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListPage()));
@@ -53,8 +56,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
           ),
         ),
         appBar: AppBar(
-            title: const Center(child: Text("EBootikoo")),
-            actions: [TextButton(onPressed: () {print("peye");}, child: const Text("PEYE", style: AppTheme.titleHead,))],
+            title: Center(child: Text(listWidgetTitle.elementAt(selectedIndex))),
+            actions: [TextButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => const PayementPage()));
+            }, child: const Text("PEYE", style: AppTheme.titleHead,))],
           ),
         body:  listWidget.elementAt(selectedIndex),
         bottomNavigationBar: BottomNavigationBar(

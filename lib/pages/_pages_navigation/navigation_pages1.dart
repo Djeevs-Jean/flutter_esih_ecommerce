@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bankhoo/data.dart';
 
 class FavoritePage extends StatefulWidget {
+  static var title;
+
   const FavoritePage({super.key});
 
   @override
