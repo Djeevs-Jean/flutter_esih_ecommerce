@@ -89,8 +89,8 @@ class BodyHomePageScreen extends StatefulWidget {
 
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
 
-  List<Article> _newArticles = [];
-  List<Article> listArticles = DataApp.getListArticles();
+  List<Article> _listArticles = [];
+  // List<Article> listArticles = DataApp.getListArticles();
   List<String> listCategories = DataApp.listCategories;
   List listFavorites = DataApp.listFavorites;
   List listCart = DataApp.listCart;
@@ -99,7 +99,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
   Future<void> _fetchArticles() async {
     final articles = await ArticleService.getArticles();
     setState(() {
-      _newArticles = articles as List<Article>;
+      _listArticles = articles as List<Article>;
     });
   }
 
@@ -149,7 +149,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
 
         SingleChildScrollView(
           child:
-        ArticleListWidget(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+        ArticleListWidget(listArticles: _listArticles, listCart: listCart, listFavorites: listFavorites),
         ),
       ],
     );

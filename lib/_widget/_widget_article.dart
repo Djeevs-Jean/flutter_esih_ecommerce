@@ -1,6 +1,7 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
 import 'package:bankhoo/pages/_details/details_page.dart';
+import 'package:bankhoo/utils/utils_word.dart';
 
 class ArticleWidgetSingle extends StatefulWidget {
   final Article article;
@@ -34,9 +35,9 @@ class _ArticleWidgetSingle extends State<ArticleWidgetSingle> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.article.title, style: const TextStyle( fontSize: 18, fontWeight: FontWeight.bold, ),),
+                Text(widget.article.title, style: const TextStyle( fontSize: 12, fontWeight: FontWeight.bold, ),),
                 const SizedBox(height: 8),
-                Text(widget.article.description, style: const TextStyle( fontSize: 16, ),),
+                Text(UtilsWord(widget.article.description).subtitleString(), style: const TextStyle( fontSize: 10, ),),
                 const SizedBox(height: 10),
                 Text('Prix :${widget.article.price}\$', style: const TextStyle( fontSize: 16, fontWeight: FontWeight.bold,),),
                 const SizedBox(height: 16),
