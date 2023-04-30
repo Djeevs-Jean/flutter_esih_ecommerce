@@ -85,27 +85,64 @@ class BodyHomePageScreen extends StatefulWidget {
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
 
   List<Article> listArticles = DataApp.getListArticles();
-  List listCategories = DataApp.listCategories;
+  List<String> listCategories = DataApp.listCategories;
   List listFavorites = DataApp.listFavorites;
   List listCart = DataApp.listCart;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(5),
-        child: Column(
-          children: [
-            Expanded(child: ListView.builder(
-              itemCount: listCategories.length,
-              itemBuilder: ((context, index) => WidgetCategory(category: listCategories[index]))
-              )
-            ),
-            Expanded(
-              child: WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
-            ),
-          ],
-      ),
+    return ListView(
+      children: [
+        Container(
+          height: 500,
+          padding: const EdgeInsets.only(top: 15),
+          decoration: const BoxDecoration(
+          ),
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 10,
+                ),
+                child: const Text("Categories", style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),),
+              ),
+              CategoryWidget(listCategory: listCategories)
+            ],
+          ),
+        ),
+
+        
+      ],
     );
+
+
+
+// SingleChildScrollView(
+//       child: Container(
+//       margin: const EdgeInsets.all(5),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             SizedBox(
+//   height: 200, // or any other value that works for your layout
+//   child: ListView.builder(
+//     itemCount: listCategories.length,
+//     itemBuilder: ((context, index) => WidgetCategory(category: listCategories[index]))
+//   ),
+// ),
+//             SizedBox(height: 16),
+//               WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+//           ],
+//       ),
+//       ),
+//       );
+    // );
     
     // Container(
     //     margin: const EdgeInsets.all(5),
