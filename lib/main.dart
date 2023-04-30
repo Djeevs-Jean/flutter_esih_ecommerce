@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/data.dart';
-import 'package:bankhoo/_widget/_widget_article.dart';
 import 'package:bankhoo/_widget/_widget_category.dart';
 import 'package:bankhoo/pages/_pages_drawer/drawer_page1.dart';
+import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
-import 'package:bankhoo/pages/_details/details_page.dart';
+import 'package:bankhoo/_widget/_widget_list_article.dart';
+
 
 void main() {
   runApp(const MaterialApp(home: HomePageScreen()));
@@ -76,12 +76,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
 }
 
 class BodyHomePageScreen extends StatefulWidget {
-  final List listCategories = DataApp.listCategories;
-  final List listArticles = DataApp.getListArticles();
-  List listFavorites = DataApp.listFavorites;
-  List listCart = DataApp.listCart;
-
-  BodyHomePageScreen({Key? key}) : super(key: key);
+  const BodyHomePageScreen({Key? key}) : super(key: key);
 
   @override
   State<BodyHomePageScreen> createState() => _BodyHomePageScreenState();
@@ -89,41 +84,85 @@ class BodyHomePageScreen extends StatefulWidget {
 
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
 
-  void navigateToArticleDetailPage(Article article) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(article: article)));
-  }
-
-  void favoritesTap(Article article) {
-      setState(() {
-        print(article);
-        if (!widget.listFavorites.contains(article)) {
-          widget.listFavorites.add(article);
-        }
-      });
-    }
-
-  void addToCart(Article article) {
-      setState(() {
-        print(article);
-        if (!widget.listCart.contains(article)) {
-          widget.listCart.add(article);
-        }
-      });
-    }
-
+  List<Article> listArticles = DataApp.getListArticles();
+  List listCategories = DataApp.listCategories;
+  List listFavorites = DataApp.listFavorites;
+  List listCart = DataApp.listCart;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const Padding(padding: EdgeInsets.only(left: 10), child: Text("Top Category")),
-          ...widget.listCategories.map((category) => WidgetCategory(category: category)).toList(),
-          
-        ]
+        child: Column(
+          children: [
+            Expanded(child: ListView.builder(
+              itemCount: listCategories.length,
+              itemBuilder: ((context, index) => WidgetCategory(category: listCategories[index]))
+              )
+            ),
+            Expanded(
+              child: WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+            ),
+          ],
       ),
     );
+    
+    // Container(
+    //     margin: const EdgeInsets.all(5),
+    //     child: ListView(
+    //       children: [
+    //         Column(
+    //           mainAxisAlignment: MainAxisAlignment.start,
+    //             children: [
+    //                 const Padding(padding: EdgeInsets.only(left: 10), child: Text("Top Category")),
+    //               ...listCategories.map((category) => WidgetCategory(category: category)).toList(),
+    //             ],
+                
+    //           ),
+    //           // WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+
+    //       ],
+    //     ),
+        
+      
+      //   child: ListView(
+      //     mar
+      //     children: [
+      //       Column(
+      //         mainAxisAlignment: MainAxisAlignment.start,
+      //         children: [
+      //             const Padding(padding: EdgeInsets.only(left: 10), child: Text("Top Category")),
+      //           ...listCategories.map((category) => WidgetCategory(category: category)).toList(),
+      //         ],)
+      //     ],
+      //   ),
+      // // child: Column(
+      // //   mainAxisAlignment: MainAxisAlignment.start,
+      // //   children: [
+      // //       const Padding(padding: EdgeInsets.only(left: 10), child: Text("Top Category")),
+      //     ...listCategories.map((category) => WidgetCategory(category: category)).toList(),
+      //   ]
+      // ),
+      // WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+    // );
   }
 }
+
+
+// class ProductListPage extends StatefulWidget {
+//   const ProductListPage({Key? key}) : super(key: key);
+
+//   @override
+//   State<ProductListPage> createState() => _ProductListPageState();
+// }
+
+// class _ProductListPageState extends State<ProductListPage> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Center(child: Text("List Produits"))),
+//       body: const Center(child: Text("les articles a recuperer seront bientot ici"),),
+//     );
+//   }
+// }

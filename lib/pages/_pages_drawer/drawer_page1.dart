@@ -15,7 +15,7 @@ class ProductListPage extends StatefulWidget {
 
 class _ProductListPageState extends State<ProductListPage> {
 
-  List listArticles = DataApp.getListArticles();
+  List<Article> listArticles = DataApp.getListArticles();
   List listFavorites = DataApp.listFavorites;
   List listCart = DataApp.listCart;
 

@@ -5,7 +5,7 @@ import 'package:bankhoo/_widget/_widget_article.dart';
 import 'package:bankhoo/pages/_details/details_page.dart';
 
 class WidgetListProduit extends StatefulWidget {
-  final List<dynamic> listArticles;
+  final List<Article> listArticles;
   final List<dynamic> listFavorites;
   final List<dynamic> listCart;
   const WidgetListProduit({Key? key, required this.listArticles, required this.listFavorites, required this.listCart}) : super(key: key);
