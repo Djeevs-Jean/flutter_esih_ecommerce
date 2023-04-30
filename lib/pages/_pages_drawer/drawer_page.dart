@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/data.dart';
-import 'package:bankhoo/pages/_details/details_page.dart';
-import 'package:bankhoo/_widget/_widget_article.dart';
 import 'package:bankhoo/models/article.dart';
-import 'package:bankhoo/_widget/_widget_list_article.dart';
+import 'package:bankhoo/_widget/_widget_article.dart';
+
 
 class ProductListPage extends StatefulWidget {
   const ProductListPage({Key? key}) : super(key: key);
@@ -25,7 +24,7 @@ class _ProductListPageState extends State<ProductListPage> {
       appBar: AppBar(title: const Center(child: Text("List Produits"))),
       body: Container(
         margin: const EdgeInsets.all(10),
-        child: WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+        child: ArticleListWidget(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
       ),
     );
   }

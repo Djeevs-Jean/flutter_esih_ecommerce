@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/data.dart';
 import 'package:bankhoo/_widget/_widget_category.dart';
-import 'package:bankhoo/pages/_pages_drawer/drawer_page1.dart';
+import 'package:bankhoo/pages/_pages_drawer/drawer_page.dart';
 import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/_widget/_widget_article.dart';
 import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
@@ -128,67 +128,5 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
         ArticleListWidget(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
       ],
     );
-
-
-
-// SingleChildScrollView(
-//       child: Container(
-//       margin: const EdgeInsets.all(5),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             SizedBox(
-//   height: 200, // or any other value that works for your layout
-//   child: ListView.builder(
-//     itemCount: listCategories.length,
-//     itemBuilder: ((context, index) => WidgetCategory(category: listCategories[index]))
-//   ),
-// ),
-//             SizedBox(height: 16),
-//               WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
-//           ],
-//       ),
-//       ),
-//       );
-    // );
-    
-    // Container(
-    //     margin: const EdgeInsets.all(5),
-    //     child: ListView(
-    //       children: [
-    //         Column(
-    //           mainAxisAlignment: MainAxisAlignment.start,
-    //             children: [
-    //                 const Padding(padding: EdgeInsets.only(left: 10), child: Text("Top Category")),
-    //               ...listCategories.map((category) => WidgetCategory(category: category)).toList(),
-    //             ],
-                
-    //           ),
-    //           // WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
-
-    //       ],
-    //     ),
-        
-      
-      //   child: ListView(
-      //     mar
-      //     children: [
-      //       Column(
-      //         mainAxisAlignment: MainAxisAlignment.start,
-      //         children: [
-      //             const Padding(padding: EdgeInsets.only(left: 10), child: Text("Top Category")),
-      //           ...listCategories.map((category) => WidgetCategory(category: category)).toList(),
-      //         ],)
-      //     ],
-      //   ),
-      // // child: Column(
-      // //   mainAxisAlignment: MainAxisAlignment.start,
-      // //   children: [
-      // //       const Padding(padding: EdgeInsets.only(left: 10), child: Text("Top Category")),
-      //     ...listCategories.map((category) => WidgetCategory(category: category)).toList(),
-      //   ]
-      // ),
-      // WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
-    // );
   }
 }
