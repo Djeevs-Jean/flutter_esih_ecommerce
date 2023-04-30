@@ -132,7 +132,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
                   color: Colors.blue,
                 ),),
               ),
-              CategoryWidget(listCategory: listCategories)
+              CategoryListWidget(listCategory: listCategories)
             ],
           ),
         ),

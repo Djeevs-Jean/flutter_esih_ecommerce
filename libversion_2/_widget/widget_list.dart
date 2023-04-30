@@ -1,7 +1,6 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
 import 'package:bankhoo/pages/_details/details_product.dart';
-import 'package:bankhoo/utils/utils_word.dart';
 
 class ArticleWidgetSingle extends StatefulWidget {
   final Article article;
@@ -35,9 +34,9 @@ class _ArticleWidgetSingle extends State<ArticleWidgetSingle> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.article.title, style: const TextStyle( fontSize: 12, fontWeight: FontWeight.bold, ),),
+                Text(widget.article.title, style: const TextStyle( fontSize: 18, fontWeight: FontWeight.bold, ),),
                 const SizedBox(height: 8),
-                Text(UtilsWord(widget.article.description).subtitleString(), style: const TextStyle( fontSize: 10, ),),
+                Text(widget.article.description, style: const TextStyle( fontSize: 16, ),),
                 const SizedBox(height: 10),
                 Text('Prix :${widget.article.price}\$', style: const TextStyle( fontSize: 16, fontWeight: FontWeight.bold,),),
                 const SizedBox(height: 16),
@@ -59,17 +58,17 @@ class _ArticleWidgetSingle extends State<ArticleWidgetSingle> {
 
 // liste produits
 
-class ArticleListWidget extends StatefulWidget {
+class WidgetListP extends StatefulWidget {
   final List<Article> listArticles;
   final List<dynamic> listFavorites;
   final List<dynamic> listCart;
-  const ArticleListWidget({Key? key, required this.listArticles, required this.listFavorites, required this.listCart}) : super(key: key);
+  const WidgetListP({Key? key, required this.listArticles, required this.listFavorites, required this.listCart}) : super(key: key);
 
   @override
-  State<ArticleListWidget> createState() => _ArticleListWidgetState();
+  State<WidgetListP> createState() => _WidgetListPState();
 }
 
-class _ArticleListWidgetState extends State<ArticleListWidget> {
+class _WidgetListPState extends State<WidgetListP> {
 
   void navigateToArticleDetailPage(Article article) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(article: article)));
@@ -96,7 +95,7 @@ class _ArticleListWidgetState extends State<ArticleListWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+      padding: const EdgeInsets.all(10),
       itemCount: widget.listArticles.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -104,22 +103,58 @@ class _ArticleListWidgetState extends State<ArticleListWidget> {
         crossAxisSpacing: 10,
         childAspectRatio: 200/450,
       ),
-      // physics: const NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return ArticleWidgetSingle(
             article: widget.listArticles[index],
             onCartTap: () {
+              print("images");
               addToCart(widget.listArticles[index]);
             },
             onFavoriteTap: () {
+              print("favorite");
               favoritesTap(widget.listArticles[index]);
             },
             onTapDetailsMeth: () {
+              print("vart");
               navigateToArticleDetailPage(widget.listArticles[index]);
             },
           );
       },
     );
   }
+
+
+
+  // @override
+  // Widget build(BuildContext context) {
+
+
+    // return GridView.builder(
+    //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    //       crossAxisCount: 2,
+    //       crossAxisSpacing: 10,
+    //       mainAxisSpacing: 10,
+    //       mainAxisExtent: 320
+    //     ), 
+    //     itemCount: widget.listArticles.length,
+    //     itemBuilder: (_, index) {
+    //       return ArticleWidget(
+    //         article: widget.listArticles[index],
+    //         onCartTap: () {
+    //           print("images");
+    //           addToCart(widget.listArticles[index]);
+    //         },
+    //         onFavoriteTap: () {
+    //           print("favorite");
+    //           favoritesTap(widget.listArticles[index]);
+    //         },
+    //         onTapDetailsMeth: () {
+    //           print("vart");
+    //           navigateToArticleDetailPage(widget.listArticles[index]);
+    //         },
+    //       );
+    // });
+  // }
 }
