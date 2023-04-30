@@ -95,7 +95,7 @@ class _ArticleListWidgetState extends State<ArticleListWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
       itemCount: widget.listArticles.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -103,21 +103,18 @@ class _ArticleListWidgetState extends State<ArticleListWidget> {
         crossAxisSpacing: 10,
         childAspectRatio: 200/450,
       ),
-      physics: const NeverScrollableScrollPhysics(),
+      // physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return ArticleWidgetSingle(
             article: widget.listArticles[index],
             onCartTap: () {
-              print("images");
               addToCart(widget.listArticles[index]);
             },
             onFavoriteTap: () {
-              print("favorite");
               favoritesTap(widget.listArticles[index]);
             },
             onTapDetailsMeth: () {
-              print("vart");
               navigateToArticleDetailPage(widget.listArticles[index]);
             },
           );

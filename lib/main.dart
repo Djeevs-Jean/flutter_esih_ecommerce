@@ -93,7 +93,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
     return ListView(
       children: [
         Container(
-          padding: const EdgeInsets.only(top: 15),
+          padding: const EdgeInsets.only(top: 10),
           decoration: const BoxDecoration(
           ),
           child: Column(
@@ -125,7 +125,10 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
           ),),
         ),
 
+        SingleChildScrollView(
+          child:
         ArticleListWidget(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+        ),
       ],
     );
   }

@@ -14,7 +14,8 @@ class _FavoritePageState extends State<FavoritePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return listFavorites.isEmpty ? const Center(child: Text("Tu n'as pas d'article favoris"),) :
+    ListView.builder(
       itemCount: listFavorites.length,
       itemBuilder: (BuildContext context, int index) {
       return ListTile(
@@ -49,7 +50,8 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     List listCart = DataApp.listCart;
 
-    return ListView.builder(
+    return listCart.isEmpty ? const Center(child: Text("Tu n'as pas d'article dans le panier"),) :
+    ListView.builder(
       itemCount: listCart.length,
       itemBuilder: (BuildContext context, int index) {
       return ListTile(
