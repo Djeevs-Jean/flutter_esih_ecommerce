@@ -3,13 +3,19 @@ import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 
 
-class ArticleWidget extends StatelessWidget {
+class ArticleWidget extends StatefulWidget {
   final Article article;
   final VoidCallback onTapDetailsMeth;
   final VoidCallback onFavoriteTap;
   final VoidCallback onCartTap;
-
   const ArticleWidget({Key? key, required this.article, required this.onTapDetailsMeth, required this.onFavoriteTap, required this.onCartTap }) : super(key: key);
+
+  @override
+  State<ArticleWidget> createState() => _ArticleWidgetState();
+}
+
+
+class _ArticleWidgetState extends State<ArticleWidget> {
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +36,15 @@ class ArticleWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            onTap: (() => onTapDetailsMeth()),
-            child: Image.network(article.image, fit: BoxFit.cover, width: double.infinity, height: 170,),
+            onTap: (() => widget.onTapDetailsMeth()),
+            child: Image.network(widget.article.image, fit: BoxFit.cover, width: double.infinity, height: 170,),
           ),
           Padding(padding: const EdgeInsets.all(8), 
             child: Column(
               children: [
-                Text(article.title, style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
+                Text(widget.article.title, style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
                 const SizedBox(height: 8),
-                Text(article.description, style: AppTheme.desc,),
+                Text(widget.article.description, style: AppTheme.desc,),
               ]
             ),
           ),
@@ -46,8 +52,8 @@ class ArticleWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(onPressed: (() => onFavoriteTap()), icon: const Icon(Icons.favorite)),
-              IconButton(onPressed: (() => onCartTap()), icon: const Icon(Icons.shopping_cart)),
+              IconButton(onPressed: (() => widget.onFavoriteTap()), icon: const Icon(Icons.favorite)),
+              IconButton(onPressed: (() => widget.onCartTap()), icon: const Icon(Icons.shopping_cart)),
             ],
           ),
         ],
