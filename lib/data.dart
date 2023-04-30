@@ -31,7 +31,6 @@ class DataApp {
       return articles;
     }
 
-
     static void removeFromFavorites(Article article) {
       article.isFavorite = false;
       listFavorites.remove(article);

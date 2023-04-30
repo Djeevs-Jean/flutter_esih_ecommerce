@@ -4,10 +4,8 @@ import 'package:bankhoo/data.dart';
 import 'package:bankhoo/_widget/_widget_category.dart';
 import 'package:bankhoo/pages/_pages_drawer/drawer_page1.dart';
 import 'package:bankhoo/models/article.dart';
-import 'package:bankhoo/_widget/widget_list.dart';
+import 'package:bankhoo/_widget/_widget_article.dart';
 import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
-import 'package:bankhoo/_widget/_widget_list_article.dart';
-
 
 void main() {
   runApp(const MaterialApp(home: HomePageScreen()));
@@ -22,7 +20,7 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
 
-  List<Widget> listWidget = [BodyHomePageScreen(), FavoritePage(), CartPage()];
+  List<Widget> listWidget = [const BodyHomePageScreen(), FavoritePage(), CartPage()];
   int selectedIndex = 0;
   
   @override
@@ -127,9 +125,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
           ),),
         ),
 
-        WidgetListP(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
-        // ArticleListWidget(listArticles: listArticles),
-
+        ArticleListWidget(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
       ],
     );
 
@@ -196,22 +192,3 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
     // );
   }
 }
-
-
-// class ProductListPage extends StatefulWidget {
-//   const ProductListPage({Key? key}) : super(key: key);
-
-//   @override
-//   State<ProductListPage> createState() => _ProductListPageState();
-// }
-
-// class _ProductListPageState extends State<ProductListPage> {
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: const Center(child: Text("List Produits"))),
-//       body: const Center(child: Text("les articles a recuperer seront bientot ici"),),
-//     );
-//   }
-// }
