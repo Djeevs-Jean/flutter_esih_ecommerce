@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/data.dart';
-import 'package:bankhoo/models/article.dart';
-import 'package:bankhoo/_widget/_widget_article.dart';
+// import 'package:bankhoo/models/widget.article.dart';
+// import 'package:bankhoo/_widget/_widget_widget.article.dart';
 import 'package:bankhoo/pages/_details/details_page.dart';
+import 'package:bankhoo/models/article.dart';
 
 class WidgetListProduit extends StatefulWidget {
   final List<Article> listArticles;
@@ -53,91 +54,107 @@ class _WidgetListProduitState extends State<WidgetListProduit> {
         ), 
         itemCount: widget.listArticles.length,
         itemBuilder: (_, index) {
-          return ArticleWidget(
-            article: widget.listArticles[index],
-            onCartTap: () {
-              print("images");
-              addToCart(widget.listArticles[index]);
-            },
-            onFavoriteTap: () {
-              print("favorite");
-              favoritesTap(widget.listArticles[index]);
-            },
-            onTapDetailsMeth: () {
-              print("vart");
-              navigateToArticleDetailPage(widget.listArticles[index]);
-            },
-          );
+          return null;
+          // ArticleWidget(
+          //   article: widget.listArticles[index],
+          //   onCartTap: () {
+          //     print("images");
+          //     addToCart(widget.listArticles[index]);
+          //   },
+          //   onFavoriteTap: () {
+          //     print("favorite");
+          //     favoritesTap(widget.listArticles[index]);
+          //   },
+          //   onTapDetailsMeth: () {
+          //     print("vart");
+          //     navigateToArticleDetailPage(widget.listArticles[index]);
+          //   },
+          // );
     });
   }
 }
 
-class _ArticleWidgetSingle extends StatelessWidget {
-  final Article article;
-  const _ArticleWidgetSingle({Key? key, required this.article}) : super(key: key);
+// class ArticleWidgetSingle extends StatefulWidget {
+//   final Article article;
+//   final VoidCallback onTapDetailsMeth;
+//   final VoidCallback onFavoriteTap;
+//   final VoidCallback onCartTap;
+//   const ArticleWidgetSingle({Key? key, required this.article, required this.onTapDetailsMeth, required this.onFavoriteTap, required this.onCartTap }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10)
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(article.image, width: double.infinity, height: 120, fit: BoxFit.cover, ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(article.title, style: const TextStyle( fontSize: 18, fontWeight: FontWeight.bold, ),),
-                const SizedBox(height: 8),
-                Text(article.description, style: const TextStyle( fontSize: 16, ),),
-                const SizedBox(height: 10),
-                Text('Prix :${article.price}\$', style: const TextStyle( fontSize: 16, fontWeight: FontWeight.bold,),),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(icon: const Icon(Icons.favorite_border),onPressed: () {}),
-                    IconButton(icon: const Icon(Icons.add_shopping_cart),onPressed: () {}),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      )
-    );
-  }
-}
+//   @override
+//   State<ArticleWidgetSingle> createState() => _ArticleWidgetSingle();
+// }
+
+// class _ArticleWidgetSingle extends State<ArticleWidgetSingle> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.circular(10)
+//       ),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           InkWell(
+//             onTap: (() => widget.onTapDetailsMeth()),
+//             child: Image.network(widget.article.image, width: double.infinity, height: 120, fit: BoxFit.cover, ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.all(8.0),
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Text(widget.article.title, style: const TextStyle( fontSize: 18, fontWeight: FontWeight.bold, ),),
+//                 const SizedBox(height: 8),
+//                 Text(widget.article.description, style: const TextStyle( fontSize: 16, ),),
+//                 const SizedBox(height: 10),
+//                 Text('Prix :${widget.article.price}\$', style: const TextStyle( fontSize: 16, fontWeight: FontWeight.bold,),),
+//                 const SizedBox(height: 16),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     IconButton(onPressed: (() => widget.onFavoriteTap()), icon: const Icon(Icons.favorite_border)),
+//                     IconButton(onPressed: (() => widget.onCartTap()), icon: const Icon(Icons.add_shopping_cart)),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       )
+//     );
+//   }
+// }
 
 
-class ArticleListWidget extends StatefulWidget {
-  final List<Article> listArticles;
-  const ArticleListWidget({Key? key, required this.listArticles}) : super(key: key);
-
-  @override
-  State<ArticleListWidget> createState() => _ArticleListWidgetState();
-}
+// class ArticleListWidget extends StatefulWidget {
+//   final List listArticles;
+//   final List listFavorites;
+//   final List listCart;
+//   const ArticleListWidget({Key? key, required this.listArticles, required this.listFavorites, required this.listCart}) : super(key: key);
 
 
-class _ArticleListWidgetState extends State<ArticleListWidget> {
+//   @override
+//   State<ArticleListWidget> createState() => _ArticleListWidgetState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      padding: const EdgeInsets.all(10),
-      childAspectRatio: 200/400,
-      // childAspectRatio: 0.45,
-      mainAxisSpacing: 8,
-      crossAxisSpacing: 10,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      children: widget.listArticles.map((article) => _ArticleWidgetSingle(article: article)).toList(),
-    );
-  }
-}
+// class _ArticleListWidgetState extends State<ArticleListWidget> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.count(
+
+//       padding: const EdgeInsets.all(10),
+//       childAspectRatio: 200/400,
+//       // childAspectRatio: 0.45,
+//       mainAxisSpacing: 8,
+//       crossAxisSpacing: 10,
+//       physics: const NeverScrollableScrollPhysics(),
+//       crossAxisCount: 2,
+//       shrinkWrap: true,
+//       children: widget.listArticles.map((article) => _ArticleWidgetSingle(article: article)).toList(),
+//     );
+//   }
+// }

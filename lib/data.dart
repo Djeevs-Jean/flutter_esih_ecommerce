@@ -17,7 +17,8 @@ class DataApp {
           'id': i,
           'title': 'title $i',
           'price': '90${i+1}',
-          'description':"l'est toujours présent dans la liste des processus du système", 
+          'description':"Dans la liste des processus du système",
+          // 'description':"l'est toujours présent dans la liste des processus du système", 
           'image':"https://placehold.co/300x400.png"
         };
         listArticles.add(data);

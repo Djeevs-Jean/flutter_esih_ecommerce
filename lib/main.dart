@@ -4,6 +4,7 @@ import 'package:bankhoo/data.dart';
 import 'package:bankhoo/_widget/_widget_category.dart';
 import 'package:bankhoo/pages/_pages_drawer/drawer_page1.dart';
 import 'package:bankhoo/models/article.dart';
+import 'package:bankhoo/_widget/widget_list.dart';
 import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
 import 'package:bankhoo/_widget/_widget_list_article.dart';
 
@@ -126,8 +127,8 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
           ),),
         ),
 
-        // WidgetListProduit(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
-        ArticleListWidget(listArticles: listArticles),
+        WidgetListP(listArticles: listArticles, listCart: listCart, listFavorites: listFavorites),
+        // ArticleListWidget(listArticles: listArticles),
 
       ],
     );
