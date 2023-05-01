@@ -9,6 +9,7 @@ import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/_widget/_widget_article.dart';
 import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
 import 'package:bankhoo/services/_product_services.dart';
+import 'package:bankhoo/services/_category_services.dart';
 
 void main() {
   runApp(const MaterialApp(home: HomePageScreen()));
@@ -90,7 +91,7 @@ class BodyHomePageScreen extends StatefulWidget {
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
 
   List<Article> _listArticles = [];
-  List<String> listCategories = DataApp.listCategories;
+  List<String> listCategories = [];
   List listFavorites = DataApp.listFavorites;
   List listCart = DataApp.listCart;
   
@@ -102,10 +103,19 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
     });
   }
 
+  Future<void> _fetchCategory() async {
+    final categories = await CategoryService.getCategories();
+    print("load category");
+    setState(() {
+      listCategories = categories;
+    });
+  }
+  
   @override
   void initState() {
     super.initState();
     _fetchArticles();
+    _fetchCategory();
   }
 
   @override
@@ -120,7 +130,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
                 margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10,),
                 child: const Text("Categories", style: AppTheme.categoryTop),
               ),
-              CategoryListWidget(listCategory: listCategories)
+              CategoryListWidget(listCategory: listCategories),
             ],
           ),
         ),
