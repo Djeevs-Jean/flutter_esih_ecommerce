@@ -77,7 +77,6 @@ class _ArticleListWidgetState extends State<ArticleListWidget> {
 
   void favoritesTap(Article article) {
       setState(() {
-        print(article);
         if (!widget.listFavorites.contains(article)) {
           widget.listFavorites.add(article);
         }
@@ -86,7 +85,6 @@ class _ArticleListWidgetState extends State<ArticleListWidget> {
 
   void addToCart(Article article) {
       setState(() {
-        print(article);
         if (!widget.listCart.contains(article)) {
           widget.listCart.add(article);
         }
