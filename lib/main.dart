@@ -29,51 +29,53 @@ class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
   return Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                decoration: const BoxDecoration(color: Colors.blue),
-                child: Column(
-                  children: const[
-                    Center(child: Text("ECommerce", style: AppTheme.titleDrawer,)),
-                    SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
-                  ],
-                ),
-              ),
-              
-              ListTile(title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
-              },),
+    drawer: Drawer(
+      child: ListView(
+        children: [
+          DrawerHeader(
+            decoration: const BoxDecoration(color: Colors.blue),
+            child: Column(
+              children: const[
+                Center(child: Text("ECommerce", style: AppTheme.titleDrawer,)),
+                SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
+              ],
+            ),
+          ),
+          
+          ListTile(title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
+          },),
 
-              ListTile(title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
-              },),
-              
-              ListTile(title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
-            ],
-          ),
-        ),
-        appBar: AppBar(
-            title: Center(child: Text(listWidgetTitle.elementAt(selectedIndex))),
-            actions: [TextButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => const PayementPage()));
-            }, child: const Text("PEYE", style: AppTheme.titleHead,))],
-          ),
-        body:  listWidget.elementAt(selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-              BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
-              BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Panier"),
-            ],
-            onTap: (value) {
-              setState(() {
-                selectedIndex = value;
-              });
-            },
-            currentIndex: selectedIndex,
-          ),
+          ListTile(title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
+          },),
+          
+          ListTile(title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
+        ],
+      ),
+    ),
+    appBar: AppBar(
+        title: Center(child: Text(listWidgetTitle.elementAt(selectedIndex))),
+        actions: [
+          TextButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const PayementPage()));
+          }, child: const Text("PEYE", style: AppTheme.titleHead,))
+        ],
+      ),
+    body:  listWidget.elementAt(selectedIndex),
+    bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Panier"),
+        ],
+        onTap: (value) {
+          setState(() {
+            selectedIndex = value;
+          });
+        },
+        currentIndex: selectedIndex,
+      ),
     );
   }
 }
