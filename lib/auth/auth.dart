@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:bankhoo/services/_auth_services.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>;
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool checkbox = true;
@@ -23,13 +23,13 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
   
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // _postLogin("mor_2314", "83r5^_");
-    _postLogin("mor_2314", "83r5^_");
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // _postLogin("mor_2314", "83r5^_");
+  //   _postLogin("mor_2314", "83r5^_");
+  // }
 
 
   // Future<void> _fetchArticles() async {
@@ -57,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
         padding: EdgeInsets.all(20),
         child: Form(  
+          
           key: _formKey,
           child: Column(
             children: [
@@ -103,7 +104,9 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton(onPressed: () {
-
+                    if (_formKey.currentState!.validate()) {
+                      _postLogin(_usernameController.text, _passwordController.text);
+                    }
                   }, child: const Text("Se Connecter")),
                   ElevatedButton(onPressed: () {}, child: const Text("Creer un Compte"))
                 ],
