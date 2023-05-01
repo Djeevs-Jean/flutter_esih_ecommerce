@@ -30,12 +30,7 @@ class _CategoryWidgetSingle extends State<CategoryWidgetSingle> {
             const SizedBox(height: 40, width: 40, child: Icon(Icons.call_to_action)),
             InkWell(
               onTap: (() => widget.onTapDetail()),
-              child: 
-              Text(widget.category, style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
-                color: Colors.blue,  
-              ),
+              child: Text(widget.category, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.blue,  ),
             ),
           ),
         ],
@@ -46,7 +41,7 @@ class _CategoryWidgetSingle extends State<CategoryWidgetSingle> {
 
 class CategoryListWidget extends StatefulWidget {
   final List<String> listCategory;
-  const CategoryListWidget({Key? key, required this.listCategory});
+  const CategoryListWidget({Key? key, required this.listCategory}) : super(key: key);
 
   @override
   State<CategoryListWidget> createState() => _CategoryListWidgetState();
@@ -57,10 +52,8 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
 
   Future<void> _fetchArticleByCategory(String category) async {
     List<Article> categories = await CategoryService.getCategoryArticles(category);
-    // print("category loads");
     setState(() {
       listCategoryArticles = categories;
-      // print("category loads");
     });
   }
 
