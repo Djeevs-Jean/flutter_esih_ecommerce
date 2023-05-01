@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/data.dart';
 import 'package:bankhoo/pages/_details/payement_page.dart';
-import 'package:bankhoo/pages/_details/login_page.dart';
+import 'package:bankhoo/auth/auth.dart';
+// import 'package:bankhoo/pages/_details/login_page.dart';
 import 'package:bankhoo/_widget/_widget_category.dart';
 import 'package:bankhoo/pages/_pages_drawer/drawer_page.dart';
 import 'package:bankhoo/models/article.dart';
@@ -51,7 +52,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
           },),
           
-          ListTile(title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
+          ListTile(title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){
+            // Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
+          },),
         ],
       ),
     ),
