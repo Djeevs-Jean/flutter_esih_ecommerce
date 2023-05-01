@@ -1,6 +1,7 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
 import 'package:bankhoo/pages/_details/details_product.dart';
+import 'package:bankhoo/services/_product_services.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 class DetailCategory extends StatefulWidget {
   final String category;
@@ -12,9 +13,26 @@ class DetailCategory extends StatefulWidget {
 }
 
 class _DetailCategoryState extends State<DetailCategory> {
+
+  List<Article> _listArticles = [];
   
   void navigateToArticleDetailPage(Article article) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => DetailProduct(article: article)));
+  }
+
+  Future<void> _fetchArticles() async {
+    final articles = await ArticleService.getArticles();
+    setState(() {
+      _listArticles = articles as List<Article>;
+    });
+  }
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _fetchArticles();
   }
 
 
