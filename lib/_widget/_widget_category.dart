@@ -53,14 +53,14 @@ class CategoryListWidget extends StatefulWidget {
 }
 
 class _CategoryListWidgetState extends State<CategoryListWidget> {
-  List<Article> listArticle_tries = [];
+  List<Article> listCategoryArticles = [];
 
   Future<void> _fetchArticleByCategory(String category) async {
     List<Article> categories = await CategoryService.getCategoryArticles(category);
-    print("category loads");
+    // print("category loads");
     setState(() {
-      listArticle_tries = categories;
-       print("category loads");
+      listCategoryArticles = categories;
+      // print("category loads");
     });
   }
 
@@ -77,7 +77,7 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
           category: category,
           onTapDetail: () {
             _fetchArticleByCategory(category);
-            navigateToArticleDetailPage(category, listArticle_tries);
+            navigateToArticleDetailPage(category, listCategoryArticles);
           },
         )).toList(),
       ),
