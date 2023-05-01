@@ -1,6 +1,6 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
-
+import 'package:bankhoo/utils/app_theme.dart';
 class DetailCategory extends StatefulWidget {
   final String category;
   final List<Article> listArticle;
@@ -20,8 +20,10 @@ class _DetailCategoryState extends State<DetailCategory> {
         children: [
           Padding(
             padding: EdgeInsets.all(16),
-            child: Text(widget.category, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+            child: Text(widget.category, style: AppTheme.detailCategoryTitle),
           ),
+
+          widget.listArticle.isEmpty ? const Expanded(child:Center(child: Text("No article pour cette catgory "))) :
 
           Expanded(child: ListView.builder(
               itemCount: widget.listArticle.length,

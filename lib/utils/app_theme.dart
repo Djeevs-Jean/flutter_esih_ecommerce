@@ -8,6 +8,13 @@ class AppTheme{
     Colors.blue,
   );
 
+  static const TextStyle detailCategoryTitle = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    // color:Colors.blue,
+  );
+
+
   static const TextStyle titleDrawer = TextStyle(
     fontSize: 22,
     color: Colors.white 
@@ -32,5 +39,5 @@ class AppTheme{
     color: Colors.white 
   );
 
-}
+  }
 
