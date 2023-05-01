@@ -107,8 +107,8 @@ class _ArticleListWidgetState extends State<ArticleListWidget> {
       // physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
-        return ArticleWidgetSingle(
-            article: widget.listArticles[index],
+      return ArticleWidgetSingle(
+          article: widget.listArticles[index],
             onCartTap: () {
               addToCart(widget.listArticles[index]);
             },
