@@ -36,19 +36,21 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 decoration: const BoxDecoration(color: Colors.blue),
                 child: Column(
                   children: const[
-                    Center(child: Text("ECommerce", style: AppTheme.titleDrawerHead,)),
+                    Center(child: Text("ECommerce", style: AppTheme.titleDrawer,)),
                     SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
                   ],
                 ),
               ),
               
-              ListTile( title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
+              ListTile(title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
               },),
-              ListTile( title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListPage()));
+
+              ListTile(title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
               },),
-              ListTile( title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
+              
+              ListTile(title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){},),
             ],
           ),
         ),
@@ -108,10 +110,7 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Container(
-          padding: const EdgeInsets.only(top: 10),
-          decoration: const BoxDecoration(
-          ),
+        Container( padding: const EdgeInsets.only(top: 10), decoration: const BoxDecoration(),
           child: Column(
             children: [
               Container(

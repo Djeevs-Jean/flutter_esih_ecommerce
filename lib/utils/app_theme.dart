@@ -8,7 +8,7 @@ class AppTheme{
     Colors.blue,
   );
 
-  static const TextStyle titleDrawerHead = TextStyle(
+  static const TextStyle titleDrawer = TextStyle(
     fontSize: 22,
     color: Colors.white 
   );
