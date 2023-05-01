@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppTheme{
 
+  static const TextStyle categoryTop = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,color: 
+    Colors.blue,
+  );
+
   static const TextStyle titleDrawerHead = TextStyle(
     fontSize: 22,
     color: Colors.white 

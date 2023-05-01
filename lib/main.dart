@@ -22,7 +22,6 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-
   List<Widget> listWidget = [const BodyHomePageScreen(), FavoritePage(), CartPage()];
   List<String> listWidgetTitle = ["EBootikoo", "Favorite Page", "Cart Page"];
   int selectedIndex = 0;
@@ -38,10 +37,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 child: Column(
                   children: const[
                     Center(child: Text("ECommerce", style: AppTheme.titleDrawerHead,)),
-                    SizedBox(
-                      height: 20,
-                      child: Icon(Icons.eco_outlined, size: 70,),
-                    ),
+                    SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
                   ],
                 ),
               ),
@@ -90,7 +86,6 @@ class BodyHomePageScreen extends StatefulWidget {
 class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
 
   List<Article> _listArticles = [];
-  // List<Article> listArticles = DataApp.getListArticles();
   List<String> listCategories = DataApp.listCategories;
   List listFavorites = DataApp.listFavorites;
   List listCart = DataApp.listCart;
@@ -103,13 +98,12 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
     });
   }
 
-@override
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    print("init state");
     _fetchArticles();
   }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -122,15 +116,8 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
             children: [
               Container(
                 alignment: Alignment.centerLeft,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 10,
-                ),
-                child: const Text("Categories", style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),),
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10,),
+                child: const Text("Categories", style: AppTheme.categoryTop),
               ),
               CategoryListWidget(listCategory: listCategories)
             ],
@@ -139,17 +126,14 @@ class _BodyHomePageScreenState extends State<BodyHomePageScreen> {
       
         Container(
           alignment: Alignment.centerLeft,
-          margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Text("Articles", style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.blue,
-          ),),
+          margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          child: const Text("Articles", style: AppTheme.categoryTop),
         ),
 
         SingleChildScrollView(
-          child:
-        ArticleListWidget(listArticles: _listArticles, listCart: listCart, listFavorites: listFavorites),
+          child:ArticleListWidget(
+            listArticles: _listArticles, 
+            listCart: listCart, listFavorites: listFavorites),
         ),
       ],
     );
