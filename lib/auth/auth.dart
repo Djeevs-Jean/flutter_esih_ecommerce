@@ -10,7 +10,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>;
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool checkbox = true;
 
@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    // _postLogin("mor_2314", "83r5^_");
     _postLogin("mor_2314", "83r5^_");
   }
 
@@ -56,12 +57,18 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
         padding: EdgeInsets.all(20),
         child: Form(  
-          // key: _formKey,
+          key: _formKey,
           child: Column(
             children: [
               TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(hintText: "Email"),
+                controller: _usernameController,
+                decoration: const InputDecoration(hintText: "Username"),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Veuillez entrer un username';
+                  } 
+                  return null;
+                },
               ),
 
               const SizedBox(height: 15,),
@@ -70,6 +77,12 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _passwordController,
                 decoration: const InputDecoration(hintText: "Password"),
                 obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Veuillez saisir votre mot de passe';
+                  } 
+                  return null;
+                },
               ),
 
               const SizedBox(height: 15,),
@@ -91,12 +104,10 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   ElevatedButton(onPressed: () {
 
-                  }, child: Text("Se Connecter")),
-                  ElevatedButton(onPressed: () {}, child: Text("Creer un Compte"))
+                  }, child: const Text("Se Connecter")),
+                  ElevatedButton(onPressed: () {}, child: const Text("Creer un Compte"))
                 ],
               )
-
-
             ],
           ),
         ),
