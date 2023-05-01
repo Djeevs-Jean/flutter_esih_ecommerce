@@ -1,5 +1,6 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
+import 'package:bankhoo/pages/_details/details_product.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 class DetailCategory extends StatefulWidget {
   final String category;
@@ -11,6 +12,12 @@ class DetailCategory extends StatefulWidget {
 }
 
 class _DetailCategoryState extends State<DetailCategory> {
+  
+  void navigateToArticleDetailPage(Article article) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailProduct(article: article)));
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,17 +36,26 @@ class _DetailCategoryState extends State<DetailCategory> {
               itemCount: widget.listArticle.length,
               itemBuilder: (BuildContext context, int index) {
               return ListTile(
-                leading: Image.network(
+                leading: InkWell(
+                  child: Image.network(
                     widget.listArticle[index].image,
                     width: 50,
                     height: 50,
                   ),
+                  onTap: () {
+                    navigateToArticleDetailPage(widget.listArticle[index]);
+                  },
+                ),
                   title: Text(widget.listArticle[index].title),
                   subtitle: Text('\$${widget.listArticle[index].price}'),
                   trailing: IconButton(
                     icon: const Icon(Icons.add_shopping_cart),
                     onPressed: () {
-                      // Ajouter le produit au panier ici
+                      // setState(() {
+                      //   if (!widget.listCart.contains(article)) {
+                      //     widget.listCart.add(article);
+                      //   }
+                      // });
                     },
                   ),
                 );

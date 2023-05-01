@@ -1,6 +1,6 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
-import 'package:bankhoo/pages/_details/details_page.dart';
+import 'package:bankhoo/pages/_details/details_product.dart';
 import 'package:bankhoo/utils/utils_word.dart';
 
 class ArticleWidgetSingle extends StatefulWidget {
@@ -72,7 +72,7 @@ class ArticleListWidget extends StatefulWidget {
 class _ArticleListWidgetState extends State<ArticleListWidget> {
 
   void navigateToArticleDetailPage(Article article) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage(article: article)));
+    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailProduct(article: article)));
   }
 
   void favoritesTap(Article article) {
