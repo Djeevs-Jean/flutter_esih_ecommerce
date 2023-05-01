@@ -1,7 +1,6 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
 import 'package:bankhoo/pages/_details/details_category.dart';
-import 'package:bankhoo/data.dart';
 import 'package:bankhoo/services/_category_services.dart';
 
 class CategoryWidgetSingle extends StatefulWidget {
