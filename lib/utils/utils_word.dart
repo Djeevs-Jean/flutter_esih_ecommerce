@@ -1,9 +1,6 @@
 class UtilsWord {
-  final String value;
 
-  UtilsWord(this.value);
-
-  String subtitleString() {
+  static String subsWord(String value) {
     int N = 85;
     int countString = value.length;
     if (countString > N) {

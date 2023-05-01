@@ -37,7 +37,7 @@ class _ArticleWidgetSingle extends State<ArticleWidgetSingle> {
               children: [
                 Text(widget.article.title, style: const TextStyle( fontSize: 12, fontWeight: FontWeight.bold, ),),
                 const SizedBox(height: 8),
-                Text(UtilsWord.subsWord(widget.article.description), style: const TextStyle( fontSize: 10, ),),
+                Text(UtilsWord(widget.article.description).subsWord(), style: const TextStyle( fontSize: 10, ),),
                 const SizedBox(height: 10),
                 Text('Prix :${widget.article.price}\$', style: const TextStyle( fontSize: 16, fontWeight: FontWeight.bold,),),
                 const SizedBox(height: 16),
