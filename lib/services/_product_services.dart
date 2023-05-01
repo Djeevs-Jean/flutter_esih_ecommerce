@@ -12,8 +12,7 @@ class ArticleService {
     if (articlesJson != null) {
       final articleList = json.decode(articlesJson) as List<dynamic>;
       final articles = articleList.map((article) => Article.fromJson(article)).toList();
-      print("local");
-      print("$articles");
+      print("local\n$articles");
       return articles;
     } else {
       final response = await http.get(Uri.parse(apiUrl));
@@ -21,8 +20,7 @@ class ArticleService {
         final articleJson = response.body;
         final articleList = json.decode(articleJson) as List<dynamic>;
         final articles = articleList.map((article) => Article.fromJson(article)).toList();
-        print("api");
-        print("$articles");
+        print("api\n$articles");
         return articles;
       } else {
         throw Exception('Failed to load articles');
@@ -30,5 +28,5 @@ class ArticleService {
     }
   } 
 
-  
+
 }
