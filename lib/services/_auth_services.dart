@@ -15,10 +15,11 @@ class AuthService {
 
     if(response.statusCode==200) {
       final tokenJson = response.body;
-      final token = json.decode(tokenJson).toString();
-      print("token $token");
-      return token;
-    }
+      final Map<String, dynamic> token = json.decode(tokenJson);
+      final tokens =  token.values.toString();
+      print("token $tokens");
+      return tokens;
+    } 
     return null; 
   }
 
