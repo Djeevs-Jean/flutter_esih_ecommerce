@@ -4,7 +4,8 @@ import 'package:bankhoo/pages/_details/payement_page.dart';
 import 'package:bankhoo/screen/home_page.dart';
 import 'package:bankhoo/auth/auth.dart';
 import 'package:bankhoo/pages/_pages_drawer/drawer_page.dart';
-import 'package:bankhoo/pages/_pages_navigation/navigation_pages1.dart';
+import 'package:bankhoo/screen/cart_page.dart';
+import 'package:bankhoo/screen/favorite_page.dart';
 
 void main() {
   runApp(const MyApp());
