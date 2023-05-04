@@ -3,7 +3,7 @@ import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/services/_product_services.dart';
 import 'package:bankhoo/services/_category_services.dart';
 import 'package:bankhoo/utils/app_theme.dart';
-import 'package:bankhoo/_widget/_widget_article.dart';
+import 'package:bankhoo/_widget/_widget_product.dart';
 import 'package:bankhoo/_widget/_widget_category.dart';
 import 'package:bankhoo/data.dart';
 
@@ -65,7 +65,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           child: const Text("Articles", style: AppTheme.categoryTop),
-        ),
+        ), 
 
         SingleChildScrollView(
           child:ArticleListWidget(

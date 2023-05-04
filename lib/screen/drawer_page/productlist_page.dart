@@ -3,8 +3,7 @@ import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/data.dart';
 import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/services/_product_services.dart';
-import 'package:bankhoo/_widget/_widget_article.dart';
-
+import 'package:bankhoo/_widget/_widget_product.dart';
 
 class ProductListPage extends StatefulWidget {
   const ProductListPage({Key? key}) : super(key: key);
@@ -38,7 +37,7 @@ class _ProductListPageState extends State<ProductListPage> {
     return Scaffold(
       appBar: AppBar(title: const Center(child: Text("List Produits"))),
       body: Container(
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 8),
         child: ArticleListWidget(listArticles: _listArticles, listCart: listCart, listFavorites: listFavorites),
       ),
     );

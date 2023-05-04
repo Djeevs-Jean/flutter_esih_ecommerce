@@ -63,7 +63,8 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return widget.listCategory.isEmpty ? const Center(child: CircularProgressIndicator(),) :
+      SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: widget.listCategory.map((category) => CategoryWidgetSingle(
