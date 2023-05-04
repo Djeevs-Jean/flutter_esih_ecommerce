@@ -24,7 +24,7 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  List<Widget> listWidget = [const BodyHomePageScreen(), FavoritePage(), CartPage()];
+  List<Widget> listWidget = [ FavoritePage(), BodyHomePageScreen(), CartPage()];
   List<String> listWidgetTitle = ["EBootikoo", "Favorite Page", "Cart Page"];
   int selectedIndex = 0;
   
@@ -69,8 +69,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
     body:  listWidget.elementAt(selectedIndex),
     bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Panier"),
         ],
         onTap: (value) {
