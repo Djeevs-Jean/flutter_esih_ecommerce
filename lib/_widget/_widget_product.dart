@@ -1,7 +1,6 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
 import 'package:bankhoo/screen/detail_page/product_detail.dart';
-import 'package:bankhoo/utils/utils_word.dart';
 
 class ProductSingleWidget extends StatefulWidget {
   final Article article;
