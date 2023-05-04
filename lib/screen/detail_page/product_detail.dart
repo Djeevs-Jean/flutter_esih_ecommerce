@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/models/article.dart';
 
-class DetailProduct extends StatefulWidget {
+class ProductDetail extends StatefulWidget {
   final Article article;
-  const DetailProduct({super.key, required this.article});
+  const ProductDetail({super.key, required this.article});
 
   @override
-  State<DetailProduct> createState() => _DetailProductState();
+  State<ProductDetail> createState() => _ProductDetailState();
 }
 
-class _DetailProductState extends State<DetailProduct> {
+class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

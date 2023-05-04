@@ -1,23 +1,24 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
-import 'package:bankhoo/pages/_details/details_product.dart';
+import 'package:bankhoo/screen/detail_page/product_detail.dart';
 import 'package:bankhoo/services/_product_services.dart';
 import 'package:bankhoo/utils/app_theme.dart';
-class DetailCategory extends StatefulWidget {
+
+class CategoryDetail extends StatefulWidget {
   final String category;
   final List<Article> listArticle;
-  const DetailCategory({super.key, required this.category, required this.listArticle});
+  const CategoryDetail({super.key, required this.category, required this.listArticle});
 
   @override
-  State<DetailCategory> createState() => _DetailCategoryState();
+  State<CategoryDetail> createState() => _CategoryDetailState();
 }
 
-class _DetailCategoryState extends State<DetailCategory> {
+class _CategoryDetailState extends State<CategoryDetail> {
 
   List<Article> _listArticles = [];
   
   void navigateToArticleDetailPage(Article article) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailProduct(article: article)));
+    Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(article: article)));
   }
 
   Future<void> _fetchArticles() async {
