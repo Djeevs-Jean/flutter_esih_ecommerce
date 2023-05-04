@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 // import 'package:bankhoo/pages/_details/payement_page.dart';
 import 'package:bankhoo/screen/home_page.dart';
-import 'package:bankhoo/screen/auth_page/auth.dart';
+import 'package:bankhoo/screen/auth_page/login_page.dart';
 // import 'package:bankhoo/pages/_pages_drawer/drawer_page.dart';
 import 'package:bankhoo/screen/payment_page.dart';
 import 'package:bankhoo/screen/drawer_page/productlist_page.dart';

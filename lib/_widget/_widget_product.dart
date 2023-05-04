@@ -1,5 +1,7 @@
 import 'package:bankhoo/models/article.dart';
 import 'package:flutter/material.dart';
+import 'package:bankhoo/data.dart';
+import 'package:bankhoo/screen/auth_page/login_page.dart';
 import 'package:bankhoo/screen/detail_page/product_detail.dart';
 
 class ProductSingleWidget extends StatefulWidget {
@@ -115,9 +117,14 @@ class _ProductListWidgetState extends State<ProductListWidget> {
 
   void addToCart(Article article) {
       setState(() {
-        if (!widget.listCart.contains(article)) {
+        if (DataApp.listUser.isEmpty) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => LoginPage()));
+        } else {
+          if (!widget.listCart.contains(article)) {
           widget.listCart.add(article);
+          }
         }
+        
       });
     }
 
