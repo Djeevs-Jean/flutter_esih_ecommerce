@@ -68,7 +68,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         ), 
 
         SingleChildScrollView(
-          child:ArticleListWidget(
+          child:ProductListWidget(
             listArticles: _listArticles, 
             listCart: listCart, listFavorites: listFavorites),
         ),

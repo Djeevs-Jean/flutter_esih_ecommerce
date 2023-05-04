@@ -90,17 +90,17 @@ class _ProductSingleWidgetState extends State<ProductSingleWidget> {
 
 // liste produits
 
-class ArticleListWidget extends StatefulWidget {
+class ProductListWidget extends StatefulWidget {
   final List<Article> listArticles;
   final List<dynamic> listFavorites;
   final List<dynamic> listCart;
-  const ArticleListWidget({Key? key, required this.listArticles, required this.listFavorites, required this.listCart}) : super(key: key);
+  const ProductListWidget({Key? key, required this.listArticles, required this.listFavorites, required this.listCart}) : super(key: key);
 
   @override
-  State<ArticleListWidget> createState() => _ArticleListWidgetState();
+  State<ProductListWidget> createState() => _ProductListWidgetState();
 }
 
-class _ArticleListWidgetState extends State<ArticleListWidget> {
+class _ProductListWidgetState extends State<ProductListWidget> {
 
   void navigateToArticleDetailPage(Article article) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(article: article)));

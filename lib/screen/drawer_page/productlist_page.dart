@@ -38,7 +38,7 @@ class _ProductListPageState extends State<ProductListPage> {
       appBar: AppBar(title: const Center(child: Text("List Produits"))),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 8),
-        child: ArticleListWidget(listArticles: _listArticles, listCart: listCart, listFavorites: listFavorites),
+        child: ProductListWidget(listArticles: _listArticles, listCart: listCart, listFavorites: listFavorites),
       ),
     );
   }
