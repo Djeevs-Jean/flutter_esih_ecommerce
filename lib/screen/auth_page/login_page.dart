@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/services/_auth_services.dart';
+import 'package:bankhoo/local/local_user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key});
@@ -15,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   bool checkbox = true;
 
   late String _token;
+  bool _isloggin = false;
 
   _postLogin(String username, String password) async {
     final currentuser = await AuthService.postUser(username, password);
@@ -106,6 +108,10 @@ class _LoginPageState extends State<LoginPage> {
                   ElevatedButton(onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _postLogin(_usernameController.text, _passwordController.text);
+                      setState(() {
+                        final user = AuthService.getUser(_usernameController.text);
+                        LocalUser.saveUserData(user['id'], user['username'])
+                      });
                     }
                   }, child: const Text("Se Connecter")),
                   ElevatedButton(onPressed: () {}, child: const Text("Creer un Compte"))

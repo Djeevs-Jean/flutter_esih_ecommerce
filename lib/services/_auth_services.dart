@@ -40,6 +40,16 @@ class AuthService {
       }
   }
 
+  static Future<Map<String, String>> getUser(String username) async{
+    final listUser = await _getAllUser();
+    for (var element in listUser) {
+      if (element['username'] == username) {
+        return element;
+      }
+    }
+    return {}; 
+  }
+  /* 
   static Future<Map<String, String>?> getUser(String userid) async{
     final listUser = await _getAllUser();
     for (var element in listUser) {
@@ -48,7 +58,8 @@ class AuthService {
       }
     }
     return null; 
-  }
+  } */
 
+  
 
 }
