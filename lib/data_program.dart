@@ -1,6 +1,6 @@
 import 'package:bankhoo/models/article.dart';
 
-class DataApp {
+class DataProgram {
     static List<Map> listArticles = [];
     static List<Article> listFavorites = [];
     static List<Article> listCart = [];
@@ -11,6 +11,14 @@ class DataApp {
   //   final String imageUrl = "https://placehold.co/300x400.png";
   // final String description = "l'est toujours présent dans la liste des processus du système";
   //   static final List<String> listFavorites = [];
+    static bool getCategory(Article article) {
+      for (var element in listFavorites) {
+        if (article.id == element.id) {
+          return true;
+        }
+      }
+      return false;
+    }
 
      static _getListUser() {
         return listUser;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bankhoo/data.dart';
+import 'package:bankhoo/data_program.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -11,7 +11,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    List listCart = DataApp.listCart;
+    List listCart = DataProgram.listCart;
 
     return listCart.isEmpty ? const Center(child: Text("Tu n'as pas d'article dans le panier"),) :
     ListView.builder(

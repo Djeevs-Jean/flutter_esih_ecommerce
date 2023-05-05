@@ -1,6 +1,6 @@
 import 'package:bankhoo/models/article.dart';
+import 'package:bankhoo/data_program.dart';
 import 'package:flutter/material.dart';
-import 'package:bankhoo/data.dart';
 import 'package:bankhoo/screen/auth_page/login_page.dart';
 import 'package:bankhoo/screen/detail_page/product_detail.dart';
 
@@ -16,6 +16,8 @@ class ProductSingleWidget extends StatefulWidget {
 }
 
 class _ProductSingleWidgetState extends State<ProductSingleWidget> {
+
+    bool _isAddedToCart = false;
 
    @override
   Widget build(BuildContext context) {
@@ -72,7 +74,8 @@ class _ProductSingleWidgetState extends State<ProductSingleWidget> {
                   children: [
                     IconButton(
                       onPressed: (() => widget.onFavoriteTap()),
-                      icon: const Icon(Icons.favorite_border),
+                      icon: DataProgram.getCategory(widget.article) ? const Icon(Icons.favorite) : const Icon(Icons.favorite_border),
+                      color: DataProgram.getCategory(widget.article) ? Colors.red : Colors.blue,
                     ),
                     IconButton(
                       onPressed: (() => widget.onCartTap()),
@@ -107,7 +110,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
     Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(article: article)));
   }
 
-  void favoritesTap(Article article) {
+  void addTofavorites(Article article) {
       setState(() {
         if (!widget.listFavorites.contains(article)) {
           widget.listFavorites.add(article);
@@ -117,7 +120,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
 
   void addToCart(Article article) {
       setState(() {
-        if (DataApp.listUser.isEmpty) {
+        if (DataProgram.listUser.isEmpty) {
           Navigator.push(context, MaterialPageRoute(builder: (_) => LoginPage()));
         } else {
           if (!widget.listCart.contains(article)) {
@@ -127,6 +130,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
         
       });
     }
+
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +154,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
               addToCart(widget.listArticles[index]);
             },
             onFavoriteTap: () {
-              favoritesTap(widget.listArticles[index]);
+              addTofavorites(widget.listArticles[index]);
             },
             onTapDetailsMeth: () {
               navigateToArticleDetailPage(widget.listArticles[index]);

@@ -5,7 +5,7 @@ import 'package:bankhoo/services/_category_services.dart';
 import 'package:bankhoo/utils/app_theme.dart';
 import 'package:bankhoo/_widget/_widget_product.dart';
 import 'package:bankhoo/_widget/_widget_category.dart';
-import 'package:bankhoo/data.dart';
+import 'package:bankhoo/data_program.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -18,8 +18,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   List<Article> _listArticles = [];
   List<String> listCategories = [];
-  List listFavorites = DataApp.listFavorites;
-  List listCart = DataApp.listCart;
+  List listFavorites = DataProgram.listFavorites;
+  List listCart = DataProgram.listCart;
   
 
   Future<void> _fetchArticles() async {

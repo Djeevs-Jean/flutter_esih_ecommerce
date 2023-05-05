@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bankhoo/data.dart';
+import 'package:bankhoo/data_program.dart';
 
 class FavoritePage extends StatefulWidget {
   static var title;
@@ -12,7 +12,7 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
 
-  List listFavorites = DataApp.listFavorites;
+  List listFavorites = DataProgram.listFavorites;
 
   @override
   Widget build(BuildContext context) {

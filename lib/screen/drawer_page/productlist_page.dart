@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/utils/app_theme.dart';
-import 'package:bankhoo/data.dart';
+import 'package:bankhoo/data_program.dart';
 import 'package:bankhoo/models/article.dart';
 import 'package:bankhoo/services/_product_services.dart';
 import 'package:bankhoo/_widget/_widget_product.dart';
@@ -15,8 +15,8 @@ class ProductListPage extends StatefulWidget {
 class _ProductListPageState extends State<ProductListPage> {
 
   List<Article> _listArticles = [];
-  List listFavorites = DataApp.listFavorites;
-  List listCart = DataApp.listCart;
+  List listFavorites = DataProgram.listFavorites;
+  List listCart = DataProgram.listCart;
 
   Future<void> _fetchArticles() async {
     final articles = await ArticleService.getArticles();
@@ -37,7 +37,7 @@ class _ProductListPageState extends State<ProductListPage> {
     return Scaffold(
       appBar: AppBar(title: const Center(child: Text("List Produits"))),
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         child: ProductListWidget(listArticles: _listArticles, listCart: listCart, listFavorites: listFavorites),
       ),
     );
