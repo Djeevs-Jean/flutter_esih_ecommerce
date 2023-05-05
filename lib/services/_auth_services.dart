@@ -23,16 +23,6 @@ class AuthService {
     return null; 
   }
 
-  static Future<Map<String, String>?> getUser(String userid) async{
-    final listUser = await _getAllUser();
-    for (var element in listUser) {
-      if (element['id'] == userid) {
-        return element;
-      }
-    }
-    return null; 
-  }
-
   static Future<List<Map<String, String>>> _getAllUser() async {
     final response = await http.get(Uri.parse("https://fakestoreapi.com/users"));
       if (response.statusCode ==200) {
@@ -50,6 +40,15 @@ class AuthService {
       }
   }
 
+  static Future<Map<String, String>?> getUser(String userid) async{
+    final listUser = await _getAllUser();
+    for (var element in listUser) {
+      if (element['id'] == userid) {
+        return element;
+      }
+    }
+    return null; 
+  }
 
 
 }
