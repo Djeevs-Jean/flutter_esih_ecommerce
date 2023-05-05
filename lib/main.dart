@@ -8,7 +8,8 @@ import 'package:bankhoo/screen/payment_page.dart';
 import 'package:bankhoo/screen/drawer_page/productlist_page.dart';
 import 'package:bankhoo/screen/cart_page.dart';
 import 'package:bankhoo/screen/favorite_page.dart';
-import 'package:bankhoo/services/_auth_services.dart';
+import 'package:bankhoo/local/user_preference.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -39,12 +40,27 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   List<Widget> listWidget = const[ FavoritePage(), HomePageScreen(), CartPage()];
   List<String> listWidgetTitle = ["Favorite Page", "EBootikoo", "Cart Page"];
+  String username = "";
   int selectedIndex = 1;
 
   Map<String, String> user = {};
 
+  getUserconnected() async {
+    var userCurrent = await UserPreferences.getUsername();
+    setState(() {
+      username = userCurrent!;
+    });
+  }
 
   @override
+  void initState() {
+    
+    super.initState();
+    getUserconnected();
+  }
+
+
+/*   @override
   void initState() {
     // TODO: implement initState
     print("load user");
@@ -53,15 +69,16 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   loadUser() async {
-    final userService = await AuthService.getUser("1");
+    final userService = await AuthService.getInfoUser("1");
     setState(() {
       print("user is $userService");
       user = userService!;
     });
   }
-  
+   */
   @override
   Widget build(BuildContext context) {
+
   return Scaffold(
     drawer: Drawer(
       child: ListView(
@@ -82,6 +99,8 @@ class _MainScreenState extends State<MainScreen> {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
           },),
           ListTile(title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){
+            UserPreferences.logout();
+            print("deconnecter");
           },),
         ],
       ),
@@ -94,7 +113,7 @@ class _MainScreenState extends State<MainScreen> {
           }, child: const Text("PEYE", style: AppTheme.titleHead,))
         ],
       ),
-    body: Center(child: Text(user['username'].toString())),
+    body: Center(child: Text(username)),
     // body: listWidget.elementAt(selectedIndex),
     bottomNavigationBar: BottomNavigationBar(
         items: const [

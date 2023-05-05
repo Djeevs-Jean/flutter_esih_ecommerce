@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:bankhoo/services/_auth_services.dart';
-import 'package:bankhoo/local/local_user.dart';
+import 'package:bankhoo/local/user_preference.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key});
+  const LoginPage({Key? key}):super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -13,42 +13,40 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool checkbox = true;
+  final String _usernameText = "";
+  final String _passwordText = "";
 
-  late String _token;
-  bool _isloggin = false;
+  bool checkbox = true;
+  bool _token = false;
+
+
+  _processLogin(username, password) async {
+    _postLogin(username, password);
+    // if (_token) {
+    final user = await AuthService.getInfoUser(username);
+    print("current user $user");
+    UserPreferences.login(user!);
+    var id = await UserPreferences.getUserId();
+    var usernam = await UserPreferences.getUsername();
+    print('id $id');
+    print('usernam $usernam');
+    // print("user info $user");
+      
+
+    // }
+    // Navigator.push(context, route)
+  }
 
   _postLogin(String username, String password) async {
-    final currentuser = await AuthService.postUser(username, password);
+    final token_id = await AuthService.postUser(username, password);
     setState(() {
-      _token = currentuser!;
+      if (token_id != null) {
+        print("token $token_id");
+        _token = true;
+      }
     });
   }
   
-  // @override
-  // void initState() {
-  //   // TODO: implement initState 
-  //   super.initState();
-  //   // _postLogin("mor_2314", "83r5^_");
-  //   _postLogin("mor_2314", "83r5^_");
-  // }
-
-
-  // Future<void> _fetchArticles() async {
-  //   final articles = await ArticleService.getArticles();
-  //   setState(() {
-  //     _listArticles = articles as List<Article>;
-  //   });
-  // }
-
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   _fetchArticles();
-  // }
-
   var titlePage = "Login Page";
 
   @override
@@ -107,11 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   ElevatedButton(onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      _postLogin(_usernameController.text, _passwordController.text);
-                      setState(() {
-                        final user = AuthService.getUser(_usernameController.text);
-                        LocalUser.saveUserData(user['id'], user['username'])
-                      });
+                      _processLogin(_usernameController.text, _passwordController.text);
                     }
                   }, child: const Text("Se Connecter")),
                   ElevatedButton(onPressed: () {}, child: const Text("Creer un Compte"))
