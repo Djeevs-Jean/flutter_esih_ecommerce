@@ -8,6 +8,7 @@ import 'package:bankhoo/screen/payment_page.dart';
 import 'package:bankhoo/screen/drawer_page/productlist_page.dart';
 import 'package:bankhoo/screen/cart_page.dart';
 import 'package:bankhoo/screen/favorite_page.dart';
+import 'package:bankhoo/services/_auth_services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +40,25 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> listWidget = const[ FavoritePage(), HomePageScreen(), CartPage()];
   List<String> listWidgetTitle = ["Favorite Page", "EBootikoo", "Cart Page"];
   int selectedIndex = 1;
+
+  Map<String, String> user = {};
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    print("load user");
+    loadUser();
+    
+  }
+
+  loadUser() async {
+    final userService = await AuthService.getUser("1");
+    setState(() {
+      print("user is $userService");
+      user = userService!;
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -74,7 +94,8 @@ class _MainScreenState extends State<MainScreen> {
           }, child: const Text("PEYE", style: AppTheme.titleHead,))
         ],
       ),
-    body: listWidget.elementAt(selectedIndex),
+    body: Center(child: Text(user['username'].toString())),
+    // body: listWidget.elementAt(selectedIndex),
     bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
