@@ -1,6 +1,6 @@
 {
-    "name": "bankhoo",
-    "short_name": "bankhoo",
+    "name": "flutter_ecommerce",
+    "short_name": "flutter_ecommerce",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
