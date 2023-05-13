@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/models/article.dart';
 import 'package:flutter_ecommerce/services/_product_services.dart';
+import 'package:flutter_ecommerce/service/api_service.dart';
 import 'package:flutter_ecommerce/services/_category_services.dart';
 import 'package:flutter_ecommerce/utils/app_theme.dart';
 import 'package:flutter_ecommerce/_widget/_widget_product.dart';
@@ -23,7 +24,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
   
 
   Future<void> _fetchArticles() async {
-    final articles = await ArticleService.getArticles();
+    final articles = await APIService.getTopProducts();
+    // final articles = await ArticleService.getArticles();
     setState(() {
       _listArticles = articles as List<Article>;
     });
@@ -31,6 +33,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   Future<void> _fetchCategory() async {
     final categories = await CategoryService.getCategories();
+
     print("load category");
     setState(() {
       listCategories = categories;

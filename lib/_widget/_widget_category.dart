@@ -2,7 +2,8 @@ import 'package:flutter_ecommerce/models/article.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_ecommerce/pages/_details/details_category.dart';
 import 'package:flutter_ecommerce/screen/detail_page/category_detail.dart';
-import 'package:flutter_ecommerce/services/_category_services.dart';
+// import 'package:flutter_ecommerce/services/_category_services.dart';
+import 'package:flutter_ecommerce/service/api_service.dart';
 
 class CategoryWidgetSingle extends StatefulWidget {
  final String category;
@@ -51,7 +52,7 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
   List<Article> listCategoryArticles = [];
 
   Future<void> _fetchArticleByCategory(String category) async {
-    List<Article> categories = await CategoryService.getCategoryArticles(category);
+    List<Article> categories = await APIService.getProductsByCategory(category);
     setState(() {
       listCategoryArticles = categories;
     });

@@ -40,42 +40,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   List<Widget> listWidget = const[ FavoritePage(), HomePageScreen(), CartPage()];
   List<String> listWidgetTitle = ["Favorite Page", "EBootikoo", "Cart Page"];
-  String username = "";
   int selectedIndex = 1;
 
-  Map<String, String> user = {};
-
-  getUserconnected() async {
-    var userCurrent = await UserPreferences.getUsername();
-    setState(() {
-      username = userCurrent!;
-    });
-  }
-
-  @override
-  void initState() {
-    
-    super.initState();
-    getUserconnected();
-  }
-
-
-/*   @override
-  void initState() {
-    // TODO: implement initState
-    print("load user");
-    loadUser();
-    
-  }
-
-  loadUser() async {
-    final userService = await AuthService.getInfoUser("1");
-    setState(() {
-      print("user is $userService");
-      user = userService!;
-    });
-  }
-   */
   @override
   Widget build(BuildContext context) {
 
@@ -113,8 +79,7 @@ class _MainScreenState extends State<MainScreen> {
           }, child: const Text("PEYE", style: AppTheme.titleHead,))
         ],
       ),
-    body: Center(child: Text(username)),
-    // body: listWidget.elementAt(selectedIndex),
+    body: listWidget.elementAt(selectedIndex),
     bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
