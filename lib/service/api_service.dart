@@ -75,5 +75,14 @@ class APIService {
     }
   }
 
-  
+  static Future<dynamic> getUser(username) async{
+    try {
+      List users = await get("https://fakestoreapi.com/users");
+      users.retainWhere((element) => element["username"]==username);
+      return users[0];
+    } catch (e) {
+      print('Error: $e');
+      return [];
+    }
+  }
 }
