@@ -1,36 +1,11 @@
-import 'package:flutter_ecommerce/models/article.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_ecommerce/pages/_details/details_category.dart';
 import 'package:flutter_ecommerce/screen/detail_page/category_detail.dart';
-// import 'package:flutter_ecommerce/services/_category_services.dart';
 import 'package:flutter_ecommerce/service/api_service.dart';
 
-class CategoryWidgetSingle extends StatefulWidget {
- final String category;
+class CategoryWidgetSingle extends StatelessWidget {
+  final String category;
   final VoidCallback onTapDetail;
   const CategoryWidgetSingle({Key? key, required this.category, required this.onTapDetail}) : super(key: key);
-
-  @override
-  State<CategoryWidgetSingle> createState() => _CategoryWidgetSingle();
-}
-
-class _CategoryWidgetSingle extends State<CategoryWidgetSingle> {
-
-  _fetchArticleByCategory(String categoryName) {
-    return APIService.getProductsByCategory(categoryName);
-  }
-
-  navigateToArticleDetailPage() {
-    print("CategorySingle");
-    Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: widget.category, getProducts: () {
-      return APIService.getProductsByCategory(widget.category);
-    })));
-  }
-
-  // run() {
-
-  // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +21,13 @@ class _CategoryWidgetSingle extends State<CategoryWidgetSingle> {
           children: [
             const SizedBox(height: 40, width: 40, child: Icon(Icons.call_to_action)),
             InkWell(
-              onTap: (() => navigateToArticleDetailPage()),
-              child: Text(widget.category, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.blue,  ),
+              onTap: (() => {Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: category, getProducts: () {
+                return APIService.getProductsByCategory(category);
+              })))
+              }),
+              child: Text(category, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.blue, ),),
             ),
-          ),
-        ],
+          ],
       ),
     );
   }
@@ -68,14 +45,6 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
   late Future<List> _categories;
   late Key _key;
   
-
-  // Future<void> _fetchArticleByCategory(String category) async {
-  //   List<Article> categories = await APIService.getProductsByCategory(category);
-  //   setState(() {
-  //     listCategoryArticles = categories;
-  //   });
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -85,7 +54,6 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return FutureBuilder<List>(
       key: _key,
       future: _categories,
@@ -96,7 +64,6 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
             scrollDirection: Axis.horizontal,
             child: Row(
             children: categoryList.data!.map((item) => CategoryWidgetSingle(category: item, onTapDetail: () {
-
               })).toList(),
             ),  
           );
@@ -104,39 +71,24 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
           return Center(
             child: Column(
               children: [
-                Text("${categoryList.error}", style: TextStyle(
+                Text("${categoryList.error}", style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 10,
                 ),),
-
-                SizedBox(height: 10,),
-
+                const SizedBox(height: 10,),
                 ElevatedButton(onPressed: () {
                   setState(() {
                     _categories = widget.getCategories();
                     _key = UniqueKey();
                   });
-                }, child: Text("Retry"))
+                }, child: const Text("Retry"))
               ],
             ),
           );
         }else {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
       } 
-
-    // widget.getCategories.isEmpty ? const Center(child: CircularProgressIndicator(),) :
-    //   SingleChildScrollView(
-    //   scrollDirection: Axis.horizontal,
-    //   child: Row(
-    //     children: widget.getCategories.map((category) => CategoryWidgetSingle(
-    //       category: category,
-    //       onTapDetail: () {
-    //         _fetchArticleByCategory(category);
-    //         navigateToArticleDetailPage(category, listCategoryArticles);
-    //       },
-    //     )).toList(),
-    //   ),
     );
   }
 }
