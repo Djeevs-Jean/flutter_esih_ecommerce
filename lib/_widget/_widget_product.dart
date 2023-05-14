@@ -130,7 +130,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
   @override
   Widget build(BuildContext context) {
     MyAppStateNotifier appstate = context.watch<MyAppStateNotifier>();
-    FutureBuilder<List>(
+    return FutureBuilder<List>(
       key: _key,
       future: _products,
       builder: (context,products) {
@@ -191,7 +191,6 @@ class _ProductListWidgetState extends State<ProductListWidget> {
         }
       }
     );
-      return Container(child: Text("Ajoutez ce widget de retour par défaut"),); // Ajoutez ce widget de retour par défaut
 
   }
 }

@@ -49,7 +49,7 @@ class _WidgetBtnState extends State<WidgetBtn> {
         }
       }) ,
 
-      const SizedBox(width: 5,),
+      const SizedBox(width: 15,),
 
       FutureBuilder(future:  isFavorite, builder: (context, result) {
         if (result.hasData) {
@@ -63,7 +63,7 @@ class _WidgetBtnState extends State<WidgetBtn> {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text("You must connected to add to favorite")));
             }          
           }, 
-          icon: result.data! ?  const Icon(Icons.shopping_cart, size: iconSize,) : const Icon(Icons.shopping_cart_outlined, size: iconSize,),
+          icon: result.data! ?  const Icon(Icons.favorite, size: iconSize,) : const Icon(Icons.favorite_outline, size: iconSize,),
           color: Colors.blue,
           );
         } else if(result.hasError) {
