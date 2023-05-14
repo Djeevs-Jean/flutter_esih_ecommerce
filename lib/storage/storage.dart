@@ -54,8 +54,8 @@ class Storage {
     return await _getObject("$userId$_favKey") as List<Article>;
   }
 
-  static Future<void> toggleFavoriteProduct(int userId, dynamic value) async {
-    await _toggleObject("$userId$_favKey", value);
+  static Future<void> toggleFavoriteProduct(int userId, dynamic productId) async {
+    await _toggleObject("$userId$_favKey", productId);
   }
 
   static Future<bool> isProductFavorite(int userId, int productId) async {
