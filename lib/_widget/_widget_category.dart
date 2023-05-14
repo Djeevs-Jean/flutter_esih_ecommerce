@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/screen/detail_page/category_detail.dart';
-import 'package:flutter_ecommerce/service/api_service.dart';
 
 class CategoryWidgetSingle extends StatelessWidget {
   final String category;
@@ -21,10 +20,7 @@ class CategoryWidgetSingle extends StatelessWidget {
           children: [
             const SizedBox(height: 40, width: 40, child: Icon(Icons.call_to_action)),
             InkWell(
-              onTap: (() => {Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: category, getProducts: () {
-                return APIService.getProductsByCategory(category);
-              })))
-              }),
+              onTap: (() => {Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: category)))}),
               child: Text(category, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.blue, ),),
             ),
           ],
