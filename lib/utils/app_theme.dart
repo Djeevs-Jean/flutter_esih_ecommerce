@@ -35,7 +35,7 @@ class AppTheme{
   );
   
   static const TextStyle titleHead = TextStyle(
-    fontSize: 22,
+    fontSize: 16,
     color: Colors.white 
   );
 
