@@ -49,31 +49,25 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Container( padding: const EdgeInsets.only(top: 10), decoration: const BoxDecoration(),
-          child: Column(
-            children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10,),
-                child: const Text("Categories", style: AppTheme.categoryTop),
-              ),
-              const CategoryListWidget(getCategories: APIService.getTopCategories),
-            ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10,),
+            child: const Text("Categories", style: AppTheme.categoryTop),
           ),
-        ),
-      
-        Container(
-          alignment: Alignment.centerLeft,
-          margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: const Text("Articles", style: AppTheme.categoryTop),
-        ), 
+          const CategoryListWidget(getCategories: APIService.getTopCategories),
 
-        const SingleChildScrollView(
-          child:ProductListWidget(getProducts: APIService.getTopProducts),
-        ),
-      ],
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            child: const Text("Articles", style: AppTheme.categoryTop),
+          ), 
+          const ProductListWidget(getProducts: APIService.getTopProducts),
+        ],
+      )
     );
+    
   }
 }

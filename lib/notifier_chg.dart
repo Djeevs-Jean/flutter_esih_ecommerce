@@ -1,7 +1,5 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_ecommerce/storage/storage.dart';
-
 
 class MyAppStateNotifier extends ChangeNotifier {
   MyAppState() {
