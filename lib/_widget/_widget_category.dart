@@ -24,6 +24,10 @@ class _CategoryWidgetSingle extends State<CategoryWidgetSingle> {
     Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: widget.category, getProducts: _fetchArticleByCategory(widget.category))));
   }
 
+  run() {
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class _CategoryWidgetSingle extends State<CategoryWidgetSingle> {
           children: [
             const SizedBox(height: 40, width: 40, child: Icon(Icons.call_to_action)),
             InkWell(
-              onTap: (() => _fetchArticleByCategory(widget.category)),
+              onTap: (() => navigateToArticleDetailPage()),
               child: Text(widget.category, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.blue,  ),
             ),
           ),
@@ -60,7 +64,6 @@ class CategoryListWidget extends StatefulWidget {
 class _CategoryListWidgetState extends State<CategoryListWidget> {
   late Future<List> _categories;
   late Key _key;
-
   
 
   // Future<void> _fetchArticleByCategory(String category) async {

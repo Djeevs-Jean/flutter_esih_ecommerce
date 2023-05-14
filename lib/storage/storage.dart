@@ -51,8 +51,8 @@ class Storage {
   }
 
   /// Favorite Get favorite product for one user , as a key list 
-  static Future<List> getFavoriteProdcut(int userId) async {
-    return await _getFavoriteProducst("$userId$_favKey");
+  static Future<List<Article>> getFavoriteProdcut(int userId) async {
+    return await _getFavoriteProducst("$userId$_favKey") as List<Article>;
   }
 
   static Future<void> toggleAddInFavortite(int userId, dynamic value) async {
@@ -64,8 +64,8 @@ class Storage {
   }
 
   /// Favorite Get panier product for one user , as a key list 
-  static Future<List> getPanierProduct(int userId) async {
-    return await _getFavoriteProducst("$userId$_cartKey");
+  static Future<List<Article>> getPanierProduct(int userId) async {
+    return await _getFavoriteProducst("$userId$_cartKey") as List<Article>;
   }
 
   static Future<void> togglePanierInShop(int userId, dynamic productId) async {
