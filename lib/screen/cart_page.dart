@@ -12,11 +12,11 @@ class CartPage extends StatelessWidget {
     MyAppStateNotifier state = context.watch<MyAppStateNotifier>();
     if (state.isLogin()) {
       return ProductListWidget(getProducts: () {
-        return Storage.getPanierProduct(state.getUser()['id']);
+        return Storage.getListCartsProduct(state.getUser()['id']);
       });
     } else {
       return ProductListWidget(getProducts: () {
-        return Storage.getPanierProduct(-1);
+        return Storage.getListCartsProduct(-1);
       });
     }
   }

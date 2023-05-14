@@ -3,11 +3,11 @@ import 'package:flutter_ecommerce/service/api_service.dart';
 import 'package:localstorage/localstorage.dart';
 
 class Storage {
-  static String _file = "fakestoreapi.json";
-  static String _favKey = "fav_key";
-  static String _cartKey = "cart_key";
-  static String _userKey = "user_key";
-  static LocalStorage _storage = LocalStorage(_file);
+  static const String _file = "fakestoreapi.json";
+  static const String _favKey = "fav_key";
+  static const String _cartKey = "cart_key";
+  static const String _userKey = "user_key";
+  static final LocalStorage _storage = LocalStorage(_file);
 
   static Future<void> addUser(Map<String, dynamic> user) async {
     await _storage.ready;
@@ -24,8 +24,7 @@ class Storage {
     return await _storage.getItem(_userKey) ?? {};
   }
 
-
-  static Future<List<dynamic>> _getFavoriteProducst(String key) async {
+  static Future<List<dynamic>> _getObject(String key) async {
     await _storage.ready;
     List idList = await _storage.getItem(key) ?? [];
     final List<Article> products = await APIService.getProducts();
@@ -33,7 +32,7 @@ class Storage {
     return products;
   }
 
-  static Future<void> _toggleFavoriteProduct(String key, dynamic value) async {
+  static Future<void> _toggleObject(String key, dynamic value) async {
     await _storage.ready;
     List idList = await _storage.getItem(key) ?? [];
     if (idList.contains(value)) {
@@ -44,38 +43,36 @@ class Storage {
     await _storage.setItem(key, idList);
   }
 
-  static Future<bool> _isProductInFavorite(String key, int productId) async {
+  static Future<bool> _isObject(String key, int productId) async {
     await _storage.ready;
     List idList = await _storage.getItem(key) ?? [];
     return idList.contains(productId);
   }
 
-  /// Favorite Get favorite product for one user , as a key list 
-  static Future<List<Article>> getFavoriteProdcut(int userId) async {
-    return await _getFavoriteProducst("$userId$_favKey") as List<Article>;
+  /// Obtenir la liste des articles qui sont dans le Favorite en stockage local pour le user connecter
+  static Future<List<Article>> getListFavoriteProdcut(int userId) async {
+    return await _getObject("$userId$_favKey") as List<Article>;
   }
 
-  static Future<void> toggleAddInFavortite(int userId, dynamic value) async {
-    await _toggleFavoriteProduct("$userId$_favKey", value);
+  static Future<void> toggleFavoriteProduct(int userId, dynamic value) async {
+    await _toggleObject("$userId$_favKey", value);
   }
 
-  static Future<bool> isProductInFavorite(int userId, int productId) async {
-    return await _isProductInFavorite("$userId$_favKey", productId);
+  static Future<bool> isProductFavorite(int userId, int productId) async {
+    return await _isObject("$userId$_favKey", productId);
   }
 
-  /// Favorite Get panier product for one user , as a key list 
-  static Future<List<Article>> getPanierProduct(int userId) async {
-    return await _getFavoriteProducst("$userId$_cartKey") as List<Article>;
+  /// Obtenir la liste des articles qui sont dans le Panier en stockage local pour le user connecter
+  static Future<List<Article>> getListCartsProduct(int userId) async {
+    return await _getObject("$userId$_cartKey") as List<Article>;
   }
 
-  static Future<void> togglePanierInShop(int userId, dynamic productId) async {
-    await _toggleFavoriteProduct("$userId$_cartKey", productId);
+  static Future<void> toggleCartsProduct(int userId, dynamic productId) async {
+    await _toggleObject("$userId$_cartKey", productId);
   }
 
-  static Future<bool> isProductInPanier(int userId, int productId) async {
-    return await _isProductInFavorite("$userId$_cartKey", productId);
+  static Future<bool> isCartInProduct(int userId, int productId) async {
+    return await _isObject("$userId$_cartKey", productId);
   }
-
-
 
 }

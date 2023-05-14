@@ -12,11 +12,11 @@ class FavoritePage extends StatelessWidget {
     MyAppStateNotifier state = context.watch<MyAppStateNotifier>();
     if (state.isLogin()) {
       return ProductListWidget(getProducts: () {
-        return Storage.getFavoriteProdcut(state.getUser()['id']);
+        return Storage.getListFavoriteProdcut(state.getUser()['id']);
       });
     }else {
       return ProductListWidget(getProducts: () {
-        return Storage.getFavoriteProdcut(-1);
+        return Storage.getListFavoriteProdcut(-1);
       },);
     }
   }

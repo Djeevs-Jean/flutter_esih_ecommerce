@@ -17,8 +17,8 @@ class _WidgetButtonState extends State<WidgetButton> {
   @override
   void initState() {
     super.initState();
-    isFavorite = Storage.isProductInFavorite(widget.userId, widget.productId);
-    isCart = Storage.isProductInPanier(widget.userId, widget.productId);
+    isFavorite = Storage.isProductFavorite(widget.userId, widget.productId);
+    isCart = Storage.isCartInProduct(widget.userId, widget.productId);
   }
 
   @override
@@ -29,9 +29,9 @@ class _WidgetButtonState extends State<WidgetButton> {
         if (result.hasData) {
           return IconButton(onPressed: () async {
             if (widget.userId!=-1) {
-              await Storage.togglePanierInShop(widget.userId, widget.productId);
+              await Storage.toggleCartsProduct(widget.userId, widget.productId);
               setState(() {
-                isCart = Storage.isProductInPanier(widget.userId, widget.productId);
+                isCart = Storage.isCartInProduct(widget.userId, widget.productId);
               });
             } else {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text("You must connected to add to shop")));
@@ -52,9 +52,9 @@ class _WidgetButtonState extends State<WidgetButton> {
         if (result.hasData) {
           return IconButton(onPressed: () async {
             if (widget.userId!=-1) {
-              await Storage.toggleAddInFavortite(widget.userId, widget.productId);
+              await Storage.toggleFavoriteProduct(widget.userId, widget.productId);
               setState(() {
-                isFavorite = Storage.isProductInFavorite(widget.userId, widget.productId);
+                isFavorite = Storage.isProductFavorite(widget.userId, widget.productId);
               });
             } else {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text("You must connected to add to favorite")));
