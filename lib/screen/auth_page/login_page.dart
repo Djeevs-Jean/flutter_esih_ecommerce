@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _navigateToLoginSucces() {
     Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (ctx) => _LoginSucces()));
+    Navigator.push(context, MaterialPageRoute(builder: (ctx) => const LoginSuccesPage()));
   }
   
   var titlePage = "Login Page";
@@ -32,9 +32,8 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(title: Text(titlePage)),
       body: Center(
         child: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Form(  
-          
           key: _formKey,
           child: Column(
             children: [
@@ -48,7 +47,6 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-
               const SizedBox(height: 15,),
 
               TextFormField(
@@ -64,23 +62,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               const SizedBox(height: 15,),
-
-              // Row(
-              //   children: [
-              //     Checkbox(value: checkbox, onChanged: ((value) => setState(() {
-              //       checkbox = value!;
-              //     })) ),
-
-              //     const Text("Remember")
-              //   ],
-              // ),
-
-              const SizedBox(height: 15,),
-              _progressBar ? const LinearProgressIndicator() : Text(_error, style: TextStyle(color: Colors.red, fontSize: 22),),
+              _progressBar ? const LinearProgressIndicator() : Text(_error, style: const TextStyle(color: Colors.red, fontSize: 22),),
 
               const SizedBox(height: 15,),
               ElevatedButton(onPressed: () async {
-                print("clik");
                 setState(() {
                   _progressBar = true;
                 });
@@ -103,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   }
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("data is not correct")));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("data is not correct")));
                 }
                 setState(() {
                   _progressBar = false;
@@ -118,87 +103,32 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class _LoginSucces extends StatelessWidget{
+class LoginSuccesPage extends StatelessWidget{
+  const LoginSuccesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextStyle appbarStyle = TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-    );
-    const textStyle = TextStyle(
-      fontSize: 20,
-      color: Colors.white,
-    );
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text("Login",style: appbarStyle,),
-          automaticallyImplyLeading: false,
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Card(
-                color: Colors.green,
-                child : Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Text("Connected",style: textStyle,),
-                ),
-              ),
-              SizedBox(height: 10,),
-              Padding(
-                padding: EdgeInsets.only(bottom: 10.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      minimumSize: Size(MediaQuery.of(context).size.width/2, 50),
-                      shape : ContinuousRectangleBorder(borderRadius: BorderRadius.circular(5.0))
-                  ),
-                  onPressed: (){
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (ctx){ return MainScreen();}
-                      )
-                    );
-                  },
-                  child: Text("return to home page"),
-                ),
-              ),
-            ],
-          ),
-        )
-    );
-  }
-}
-
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
-
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
-
-  var titlePage = "Register Page";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(titlePage)),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Card(
+            color: Colors.blue,
+            child : Padding(padding: EdgeInsets.all(30), child: Text("Connected",style: TextStyle(fontSize: 22)),),
+          ),
+          const SizedBox(height: 10,),
           Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(titlePage),
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: ElevatedButton(
+              onPressed: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (ctx){ return const MainScreen();}));
+              },
+              child: const Text("Return to the home page"),
+            ),
           ),
         ],
-      )
+      ),
     );
   }
 }
