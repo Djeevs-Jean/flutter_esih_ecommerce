@@ -191,5 +191,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
         }
       }
     );
+      return Container(child: Text("Ajoutez ce widget de retour par défaut"),); // Ajoutez ce widget de retour par défaut
+
   }
 }
