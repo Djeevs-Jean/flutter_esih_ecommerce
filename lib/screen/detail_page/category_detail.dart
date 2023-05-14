@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/screen/detail_page/product_detail.dart';
 import 'package:flutter_ecommerce/services/_product_services.dart';
 import 'package:flutter_ecommerce/utils/app_theme.dart';
+import 'package:flutter_ecommerce/_widget/_widget_product.dart';
+import 'package:flutter_ecommerce/service/api_service.dart';
 
 class CategoryDetail extends StatefulWidget {
   final String category;
-  final List<Article> listArticle;
-  const CategoryDetail({super.key, required this.category, required this.listArticle});
+  final Future<List<Article>> Function() getProducts;
+  const CategoryDetail({super.key, required this.category, required this.getProducts});
 
   @override
   State<CategoryDetail> createState() => _CategoryDetailState();
@@ -49,24 +51,27 @@ class _CategoryDetailState extends State<CategoryDetail> {
             child: Text(widget.category, style: AppTheme.detailCategoryTitle),
           ),
 
-          widget.listArticle.isEmpty ? const Expanded(child:Center(child: Text("No article pour cette catgory "))) :
+          ProductListWidget(getProducts: widget.getProducts),
+         /*  
+
+          widget.getProducts.isEmpty ? const Expanded(child:Center(child: Text("No article pour cette catgory "))) :
 
           Expanded(child: ListView.builder(
-              itemCount: widget.listArticle.length,
+              itemCount: widget.getProducts.length,
               itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 leading: InkWell(
                   child: Image.network(
-                    widget.listArticle[index].image,
+                    widget.getProducts[index].image,
                     width: 50,
                     height: 50,
                   ),
                   onTap: () {
-                    navigateToArticleDetailPage(widget.listArticle[index]);
+                    navigateToArticleDetailPage(widget.getProducts[index]);
                   },
                 ),
-                  title: Text(widget.listArticle[index].title),
-                  subtitle: Text('\$${widget.listArticle[index].price}'),
+                  title: Text(widget.getProducts[index].title),
+                  subtitle: Text('\$${widget.getProducts[index].price}'),
                   trailing: IconButton(
                     icon: const Icon(Icons.add_shopping_cart),
                     onPressed: () {
@@ -79,8 +84,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
                   ),
                 );
               },
-              ),
-          ),
+              ), */
         ],
       )
     );

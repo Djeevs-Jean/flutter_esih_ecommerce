@@ -59,7 +59,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10,),
                 child: const Text("Categories", style: AppTheme.categoryTop),
               ),
-              CategoryListWidget(listCategory: listCategories),
+              const CategoryListWidget(getCategories: APIService.getTopCategories),
             ],
           ),
         ),
@@ -71,7 +71,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         ), 
 
         const SingleChildScrollView(
-          child:ProductListWidget(getProducts: APIService.getProducts),
+          child:ProductListWidget(getProducts: APIService.getTopProducts),
         ),
       ],
     );
