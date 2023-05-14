@@ -21,12 +21,15 @@ class _CategoryWidgetSingle extends State<CategoryWidgetSingle> {
   }
 
   navigateToArticleDetailPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: widget.category, getProducts: _fetchArticleByCategory(widget.category))));
+    print("CategorySingle");
+    Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: widget.category, getProducts: () {
+      return APIService.getProductsByCategory(widget.category);
+    })));
   }
 
-  run() {
+  // run() {
 
-  }
+  // }
 
 
   @override

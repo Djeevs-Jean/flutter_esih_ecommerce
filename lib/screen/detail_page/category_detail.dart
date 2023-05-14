@@ -43,7 +43,8 @@ class _CategoryDetailState extends State<CategoryDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.category)),
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
@@ -52,7 +53,11 @@ class _CategoryDetailState extends State<CategoryDetail> {
           ),
 
           ProductListWidget(getProducts: widget.getProducts),
-         /*  
+         
+        ],
+      )
+      ),
+      /*  
 
           widget.getProducts.isEmpty ? const Expanded(child:Center(child: Text("No article pour cette catgory "))) :
 
@@ -85,8 +90,6 @@ class _CategoryDetailState extends State<CategoryDetail> {
                 );
               },
               ), */
-        ],
-      )
     );
   }
 }
