@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/utils/app_theme.dart';
-// import 'package:flutter_ecommerce/pages/_details/payement_page.dart';
+import 'package:flutter_ecommerce/notifier_chg.dart';
 import 'package:flutter_ecommerce/screen/home_page.dart';
 import 'package:flutter_ecommerce/screen/auth_page/login_page.dart';
-// import 'package:flutter_ecommerce/pages/_pages_drawer/drawer_page.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_ecommerce/screen/payment_page.dart';
 import 'package:flutter_ecommerce/screen/drawer_page/productlist_page.dart';
 import 'package:flutter_ecommerce/screen/cart_page.dart';
 import 'package:flutter_ecommerce/screen/favorite_page.dart';
 import 'package:flutter_ecommerce/local/user_preference.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -20,12 +19,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    
+    return ChangeNotifierProvider(
+      create: (context) => MyAppStateNotifier(),
+      child: MaterialApp(
       title: 'Flutter E-commerce',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: const MainScreen()
+      )
     );
   }
 }
@@ -44,6 +47,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+  MyAppStateNotifier state = context.watch<MyAppStateNotifier>();
 
   return Scaffold(
     drawer: Drawer(
@@ -52,8 +56,9 @@ class _MainScreenState extends State<MainScreen> {
           DrawerHeader(
             decoration: const BoxDecoration(color: Colors.blue),
             child: Column(
-              children: const[
+              children: [
                 Center(child: Text("ECommerce", style: AppTheme.titleDrawer,)),
+                Center(child: state.isLogin() ? Text("Username: ", style: AppTheme.titleDrawer,) : Text("Username: ${state.getUser()["username"]}", style: AppTheme.titleDrawer,)),
                 SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
               ],
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/services/_auth_services.dart';
-import 'package:flutter_ecommerce/local/user_preference.dart';
+import 'package:flutter_ecommerce/service/api_service.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_ecommerce/main.dart';
+import 'package:flutter_ecommerce/notifier_chg.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}):super(key: key);
@@ -13,44 +15,19 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final String _usernameText = "";
-  final String _passwordText = "";
+  String _error = "";
+  bool _progressBar = false;
 
-  bool checkbox = true;
-  bool _token = false;
-
-
-  _processLogin(username, password) async {
-    _postLogin(username, password);
-    // if (_token) {
-    final user = await AuthService.getInfoUser(username);
-    print("current user $user");
-    UserPreferences.login(user!);
-    var id = await UserPreferences.getUserId();
-    var usernam = await UserPreferences.getUsername();
-    print('id $id');
-    print('usernam $usernam');
-    // print("user info $user");
-      
-
-    // }
-    // Navigator.push(context, route)
-  }
-
-  _postLogin(String username, String password) async {
-    final token_id = await AuthService.postUser(username, password);
-    setState(() {
-      if (token_id != null) {
-        print("token $token_id");
-        _token = true;
-      }
-    });
+  void _navigateToLoginSucces() {
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (ctx) => _LoginSucces()));
   }
   
   var titlePage = "Login Page";
 
   @override
   Widget build(BuildContext context) {
+    MyAppStateNotifier appState = context.watch<MyAppStateNotifier>();
     return Scaffold(
       appBar: AppBar(title: Text(titlePage)),
       body: Center(
@@ -88,34 +65,112 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 15,),
 
-              Row(
-                children: [
-                  Checkbox(value: checkbox, onChanged: ((value) => setState(() {
-                    checkbox = value!;
-                  })) ),
+              // Row(
+              //   children: [
+              //     Checkbox(value: checkbox, onChanged: ((value) => setState(() {
+              //       checkbox = value!;
+              //     })) ),
 
-                  const Text("Remember")
-                ],
-              ),
+              //     const Text("Remember")
+              //   ],
+              // ),
 
               const SizedBox(height: 15,),
+              _progressBar ? const LinearProgressIndicator() : Text(_error, style: TextStyle(color: Colors.red, fontSize: 22),),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _processLogin(_usernameController.text, _passwordController.text);
-                    }
-                  }, child: const Text("Se Connecter")),
-                  ElevatedButton(onPressed: () {}, child: const Text("Creer un Compte"))
-                ],
-              )
+              const SizedBox(height: 15,),
+              ElevatedButton(onPressed: () async {
+                print("clik");
+                setState(() {
+                  _progressBar = true;
+                });
+                if (_formKey.currentState!.validate()) {
+                  String username = _usernameController.text;
+                  String password = _passwordController.text;
+                  Map<String, String> loginInfo = {"username":username, "password":password};
+                  bool response = await APIService.login(loginInfo);
+                  print("User connected $response");
+                  if (response) {
+                    dynamic user = await APIService.getUser(username);
+                    await appState.login(user);
+                    setState(() {
+                      _error = "";
+                    });
+                    _navigateToLoginSucces();
+                  } else {
+                    setState(() {
+                      _error = "Username or password incorrect";
+                    });
+                  }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("data is not correct")));
+                }
+                setState(() {
+                  _progressBar = false;
+                });
+              }, child: const Text("Se Connecter")),
             ],
           ),
         ),
       ),
       )
+    );
+  }
+}
+
+class _LoginSucces extends StatelessWidget{
+
+  @override
+  Widget build(BuildContext context) {
+    TextStyle appbarStyle = TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    );
+    const textStyle = TextStyle(
+      fontSize: 20,
+      color: Colors.white,
+    );
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text("Login",style: appbarStyle,),
+          automaticallyImplyLeading: false,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Card(
+                color: Colors.green,
+                child : Padding(
+                  padding: const EdgeInsets.all(30),
+                  child: Text("Connected",style: textStyle,),
+                ),
+              ),
+              SizedBox(height: 10,),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      minimumSize: Size(MediaQuery.of(context).size.width/2, 50),
+                      shape : ContinuousRectangleBorder(borderRadius: BorderRadius.circular(5.0))
+                  ),
+                  onPressed: (){
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (ctx){ return MainScreen();}
+                      )
+                    );
+                  },
+                  child: Text("return to home page"),
+                ),
+              ),
+            ],
+          ),
+        )
     );
   }
 }

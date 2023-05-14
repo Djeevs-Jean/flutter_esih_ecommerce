@@ -68,8 +68,8 @@ class Storage {
     return await _getFavoriteProducst("$userId$_cartKey");
   }
 
-  static Future<void> togglePanierInShop(int userId, dynamic value) async {
-    await _toggleFavoriteProduct("$userId$_cartKey", value);
+  static Future<void> togglePanierInShop(int userId, dynamic productId) async {
+    await _toggleFavoriteProduct("$userId$_cartKey", productId);
   }
 
   static Future<bool> isProductInPanier(int userId, int productId) async {
