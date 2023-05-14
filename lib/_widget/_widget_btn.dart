@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/storage/storage.dart';
 
-class WidgetBtn extends StatefulWidget {
+class WidgetButton extends StatefulWidget {
   final int userId; 
   final int productId; 
-  const WidgetBtn({Key? key, required this.userId, required this.productId}) : super(key: key);
+  const WidgetButton({Key? key, required this.userId, required this.productId}) : super(key: key);
 
   @override
-  State<WidgetBtn> createState() => _WidgetBtnState();
+  State<WidgetButton> createState() => _WidgetButtonState();
 }
 
-
-class _WidgetBtnState extends State<WidgetBtn> {
-
+class _WidgetButtonState extends State<WidgetButton> {
   late Future<bool> isFavorite;
   late Future<bool> isCart;
 
   @override
   void initState() {
-    // TODO: implement initState
+    super.initState();
     isFavorite = Storage.isProductInFavorite(widget.userId, widget.productId);
     isCart = Storage.isProductInPanier(widget.userId, widget.productId);
   }
@@ -40,8 +38,7 @@ class _WidgetBtnState extends State<WidgetBtn> {
             }          
           }, 
           icon: result.data! ?  const Icon(Icons.shopping_cart, size: iconSize,) : const Icon(Icons.shopping_cart_outlined, size: iconSize,),
-          color: Colors.blue,
-          );
+          color: Colors.blue,);
         } else if(result.hasError) {
           return Text("${result.error}");
         } else {
@@ -64,17 +61,15 @@ class _WidgetBtnState extends State<WidgetBtn> {
             }          
           }, 
           icon: result.data! ?  const Icon(Icons.favorite, size: iconSize,) : const Icon(Icons.favorite_outline, size: iconSize,),
-          color: Colors.blue,
-          );
+          color: Colors.blue,);
         } else if(result.hasError) {
           return Text("${result.error}");
         } else {
           return const CircularProgressIndicator();
         }
-      }) ,
-
-
-    ],);
+      }),
+    ],
+    );
   }
   
 }

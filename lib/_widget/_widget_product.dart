@@ -52,7 +52,7 @@ class ProductSingleWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                WidgetBtn(userId: userId, productId: article.id),
+                WidgetButton(userId: userId, productId: article.id),
               ],
             ),
           ),
