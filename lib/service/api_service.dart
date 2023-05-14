@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class APIService {
-  static String _host = "https://fakestoreapi.com";
+  static const String _host = "https://fakestoreapi.com";
 
   static Future<dynamic> get(String url) async {
     final response = await http.get(Uri.parse(url));
@@ -43,6 +43,16 @@ class APIService {
     }
   }
 
+  static Future<List<dynamic>> getTopCategories() async {
+    try {
+      final response = await get("$_host/products/categories?sort=desc&limit=4") as List<dynamic>;    
+      return response;
+    } catch (e) {
+      print('Error: $e');
+      return [];
+    }
+  }
+
   static Future<List<Article>> getTopProducts() async {
     try {
       final response = await get("$_host/products?sort=desc&limit=6") as List<dynamic>;    
@@ -59,16 +69,6 @@ class APIService {
       final response = await get("$_host/products/category/$categoryName") as List<dynamic>;    
       List<Article> listArticles = response.map((item) => Article.fromJson(item)).toList();
       return listArticles;
-    } catch (e) {
-      print('Error: $e');
-      return [];
-    }
-  }
-
-  static Future<List<dynamic>> getTopCategories() async {
-    try {
-      final response = await get("$_host/products/categories?sort=desc&limit=4") as List<dynamic>;    
-      return response;
     } catch (e) {
       print('Error: $e');
       return [];

@@ -8,7 +8,6 @@ import 'package:flutter_ecommerce/screen/payment_page.dart';
 import 'package:flutter_ecommerce/screen/drawer_page/productlist_page.dart';
 import 'package:flutter_ecommerce/screen/cart_page.dart';
 import 'package:flutter_ecommerce/screen/favorite_page.dart';
-import 'package:flutter_ecommerce/local/user_preference.dart';
 
 void main() {
   runApp(const MyApp());
