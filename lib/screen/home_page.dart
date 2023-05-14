@@ -70,10 +70,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
           child: const Text("Articles", style: AppTheme.categoryTop),
         ), 
 
-        SingleChildScrollView(
-          child:ProductListWidget(
-            listArticles: _listArticles, 
-            listCart: listCart, listFavorites: listFavorites),
+        const SingleChildScrollView(
+          child:ProductListWidget(getProducts: APIService.getProducts),
         ),
       ],
     );

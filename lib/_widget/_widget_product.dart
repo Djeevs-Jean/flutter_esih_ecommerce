@@ -10,11 +10,11 @@ import 'package:flutter_ecommerce/screen/detail_page/product_detail.dart';
 class ProductSingleWidget extends StatefulWidget {
   final Article article;
   final int userId;
-  final int productId;
+  // final int productId;
   final VoidCallback onTapDetailsMeth;
   // final VoidCallback onFavoriteTap;
   // final VoidCallback onCartTap;
-  const ProductSingleWidget({Key? key, required this.article, required this.onTapDetailsMeth, required this.userId, required this.productId }) : super(key: key);
+  const ProductSingleWidget({Key? key, required this.article, required this.onTapDetailsMeth, required this.userId }) : super(key: key);
 
   @override
   State<ProductSingleWidget> createState() => _ProductSingleWidgetState();
@@ -73,7 +73,7 @@ class _ProductSingleWidgetState extends State<ProductSingleWidget> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                WidgetBtn(userId: widget.userId, productId: widget.productId),
+                WidgetBtn(userId: widget.userId, productId: widget.article.id),
                 // const SizedBox(height: 15),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,7 +101,7 @@ class _ProductSingleWidgetState extends State<ProductSingleWidget> {
 // liste produits
 
 class ProductListWidget extends StatefulWidget {
-  final Future<List> Function() getProducts;
+  final Future<List<Article>> Function() getProducts;
   // final List<Article> listArticles;
   // final List<dynamic> listFavorites;
   // final List<dynamic> listCart;
@@ -117,7 +117,6 @@ class _ProductListWidgetState extends State<ProductListWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _products = widget.getProducts();
     _key = UniqueKey();
@@ -128,63 +127,69 @@ class _ProductListWidgetState extends State<ProductListWidget> {
     Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(article: article)));
   }
 
-  // void addTofavorites(Article article) {
-  //     setState(() {
-  //       if (!widget.listFavorites.contains(article)) {
-  //         widget.listFavorites.add(article);
-  //       }
-  //     });
-  //   }
-
-  // void addToCart(Article article) {
-  //     setState(() {
-  //       if (DataProgram.listUser.isEmpty) {
-  //         Navigator.push(context, MaterialPageRoute(builder: (_) => LoginPage()));
-  //       } else {
-  //         if (!widget.listCart.contains(article)) {
-  //         widget.listCart.add(article);
-  //         }
-  //       }
-        
-  //     });
-  //   }
-
-
   @override
   Widget build(BuildContext context) {
-    // MyAppStateNotifier appstate = context.watch<MyAppStateNotifier>();
-    // FutureBuilder<List>(
-    //   key: _key,
-    //   future: _products,
-    //   builder: (context,products),
-    // );
-    return widget.listArticles.isEmpty ? const Center(child: CircularProgressIndicator(),) :
-    GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-      itemCount: widget.listArticles.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 8,
-        childAspectRatio: 0.45,
-        // childAspectRatio: 200/450,
-      ),
-      // physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) {
-      return ProductSingleWidget(
-          article: widget.listArticles[index],
-            onCartTap: () {
-              addToCart(widget.listArticles[index]);
-            },
-            onFavoriteTap: () {
-              addTofavorites(widget.listArticles[index]);
-            },
-            onTapDetailsMeth: () {
-              navigateToArticleDetailPage(widget.listArticles[index]);
-            },
+    MyAppStateNotifier appstate = context.watch<MyAppStateNotifier>();
+    FutureBuilder<List>(
+      key: _key,
+      future: _products,
+      builder: (context,products) {
+        if (products.hasData) {
+          if (products.data!.isEmpty) {
+            return const Center(
+              child: Text("No products to display", style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+              ),),
+            );
+          } else {
+          return SingleChildScrollView(
+              child: GridView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                itemCount: products.data!.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 8,
+                  childAspectRatio: 0.45,
+                  // childAspectRatio: 200/450,
+                ),
+                // physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                return ProductSingleWidget(
+                  userId: appstate.isLogin() ? appstate.getUser()['id'] : -1,
+                    article: products.data![index],
+                      onTapDetailsMeth: () {
+                        navigateToArticleDetailPage(products.data![index]);
+                      },
+                    );
+                },
+              ),
+            );
+          }
+        } else if(products.hasError) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("${products.error}"),
+                SizedBox(height: 10,),
+                ElevatedButton(onPressed: () {
+                  setState(() {
+                    _products = widget.getProducts();
+                    _key = UniqueKey();
+                  });
+                }, child: const Text("Retry"))
+              ],
+            ),
           );
-      },
+        }else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      }
     );
   }
 }
