@@ -40,7 +40,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Widget> listWidget = const[ FavoritePage(), HomePageScreen(), CartPage()];
-  List<String> listWidgetTitle = ["Favorite Page", "FedCommerce", "Cart Page"];
+  List<String> listWidgetTitle = ["Cart Page", "FedCommerce", "Favorite Page"];
   int selectedIndex = 1;
   late Key _key;
 
@@ -100,9 +100,9 @@ class _MainScreenState extends State<MainScreen> {
     body: listWidget.elementAt(selectedIndex),
     bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Cart"),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Panier"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
         ],
         onTap: (value) {
           setState(() {
