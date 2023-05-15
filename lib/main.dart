@@ -40,7 +40,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Widget> listWidget = const[ FavoritePage(), HomePageScreen(), CartPage()];
-  List<String> listWidgetTitle = ["Cart Page", "FedCommerce", "Favorite Page"];
+  List<String> listWidgetTitle = ["Cart Page", "JudithCommerce", "Favorite Page"];
   int selectedIndex = 1;
   late Key _key;
 
