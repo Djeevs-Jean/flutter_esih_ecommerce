@@ -96,7 +96,6 @@ class _ProductListWidgetState extends State<ProductListWidget> {
           if (products.data!.isEmpty) {
             return const Center(
               child: Text("No products to display", style: TextStyle(
-                fontWeight: FontWeight.bold,
                 fontSize: 20
               ),),
             );
