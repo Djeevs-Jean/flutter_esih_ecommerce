@@ -71,18 +71,14 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.login),
-            title: const Text('Login'),
-            onTap: () {
-              // Handle drawer item click
-            },
+            leading: const Icon(Icons.login),title: const Text('Login'), onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
+              },
+            enabled: !state.isLogin(),
           ),
-          ListTile(
-            leading: const Icon(Icons.select_all_outlined),
-            title: const Text('Product List'),
-            onTap: () {
-              // Handle drawer item click
-            },
+          ListTile(leading: const Icon(Icons.select_all_outlined), title: const Text('Product List'),onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
+            }
           ),
           ListTile(leading: const Icon(Icons.logout), title: const Text('Logout'),onTap: () {
             state.logout();
@@ -90,7 +86,7 @@ class _MainScreenState extends State<MainScreen> {
               _key = UniqueKey();
               });
             },
-            enabled: !state.isLogin(),
+            enabled: state.isLogin(),
           ),
         ],
       ),
