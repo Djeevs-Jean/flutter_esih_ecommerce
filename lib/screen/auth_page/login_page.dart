@@ -108,26 +108,23 @@ class LoginSuccesPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(title: const Text("Login Success")),
+      body: Center(child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Card(
-            color: Colors.blue,
-            child : Padding(padding: EdgeInsets.all(30), child: Text("Connected",style: TextStyle(fontSize: 22)),),
-          ),
-          const SizedBox(height: 10,),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
-            child: ElevatedButton(
-              onPressed: (){
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (ctx){ return const MainScreen();}));
-              },
-              child: const Text("Return to the home page"),
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: ElevatedButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (ctx){ return const MainScreen();}));
+                },
+                child: const Text("Return to the home page"),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
