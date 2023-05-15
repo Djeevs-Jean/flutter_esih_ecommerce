@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/notifier_chg.dart';
+import 'package:flutter_ecommerce/utils.dart';
 import 'package:flutter_ecommerce/_widget/_widget_product.dart';
 import 'package:flutter_ecommerce/storage/storage.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +9,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MyAppStateNotifier state = context.watch<MyAppStateNotifier>();
+    StateNotifier state = context.watch<StateNotifier>();
     if (state.isLogin()) {
       return ProductListWidget(getProducts: () {
         return Storage.getListCartsProduct(state.getUser()['id']);

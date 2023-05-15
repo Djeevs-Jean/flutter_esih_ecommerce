@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/service/api_service.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_ecommerce/main.dart';
-import 'package:flutter_ecommerce/notifier_chg.dart';
+import 'package:flutter_ecommerce/utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}):super(key: key);
@@ -23,11 +23,11 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.push(context, MaterialPageRoute(builder: (ctx) => const LoginSuccesPage()));
   }
   
-  var titlePage = "Login Page";
+  var titlePage = "Login";
 
   @override
   Widget build(BuildContext context) {
-    MyAppStateNotifier appState = context.watch<MyAppStateNotifier>();
+    StateNotifier appState = context.watch<StateNotifier>();
     return Scaffold(
       appBar: AppBar(title: Text(titlePage)),
       body: Center(
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               const SizedBox(height: 15,),
-              _progressBar ? const LinearProgressIndicator() : Text(_error, style: const TextStyle(color: Colors.red, fontSize: 22),),
+              _progressBar ? const LinearProgressIndicator() : Text(_error, style: const TextStyle(color: Colors.red, fontSize: 12),),
 
               const SizedBox(height: 15,),
               ElevatedButton(onPressed: () async {

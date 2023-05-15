@@ -14,7 +14,7 @@ class _ProductListPageState extends State<ProductListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text("List Produits"))),
+      appBar: AppBar(title: const Text("Product List")),
       body: const SingleChildScrollView(
         child: ProductListWidget(getProducts: APIService.getProducts),
       ) 

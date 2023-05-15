@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/utils/app_theme.dart';
-import 'package:flutter_ecommerce/notifier_chg.dart';
+import 'package:flutter_ecommerce/utils.dart';
 import 'package:flutter_ecommerce/screen/home_page.dart';
 import 'package:flutter_ecommerce/screen/auth_page/login_page.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return ChangeNotifierProvider(
-      create: (context) => MyAppStateNotifier(),
+      create: (context) => StateNotifier(),
       child: MaterialApp(
       title: 'Flutter E-commerce',
       theme: ThemeData(
@@ -41,7 +40,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Widget> listWidget = const[ FavoritePage(), HomePageScreen(), CartPage()];
-  List<String> listWidgetTitle = ["Favorite Page", "E", "Cart Page"];
+  List<String> listWidgetTitle = ["Favorite Page", "FedCommerce", "Cart Page"];
   int selectedIndex = 1;
   late Key _key;
 
@@ -54,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-  MyAppStateNotifier state = context.watch<MyAppStateNotifier>();
+  StateNotifier state = context.watch<StateNotifier>();
 
   return Scaffold(
     drawer: Drawer(
@@ -64,8 +63,8 @@ class _MainScreenState extends State<MainScreen> {
             decoration: const BoxDecoration(color: Colors.blue),
             child: Column(
               children: [
-                Center(child: Text("ECommerce", style: AppTheme.titleDrawer,)),
-                Center(child: state.isLogin() ? Text("Username: ${state.getUser()["username"]}") : Text("Username: ${state.getUser()["id"]}", style: AppTheme.titleDrawer,)),
+                Center(child: Text("ECommerce", style: UtilsTheme.titleDrawer,)),
+                Center(child: state.isLogin() ? Text("Username: ${state.getUser()["username"]}") : Text("Username: ${state.getUser()["id"]}", style: UtilsTheme.titleDrawer,)),
                 SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
               ],
             ),
@@ -95,7 +94,7 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           TextButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (_) => const PayementPage()));
-          }, child: const Text("PEYE", style: AppTheme.titleHead,))
+          }, child: const Text("PEYE", style: UtilsTheme.titleHead,))
         ],
       ),
     body: listWidget.elementAt(selectedIndex),

@@ -2,7 +2,7 @@ import 'package:flutter_ecommerce/models/article.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_ecommerce/_widget/_widget_btn.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/notifier_chg.dart';
+import 'package:flutter_ecommerce/utils.dart';
 import 'package:flutter_ecommerce/screen/detail_page/product_detail.dart';
 
 class ProductSingleWidget extends StatelessWidget {
@@ -87,7 +87,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    MyAppStateNotifier appstate = context.watch<MyAppStateNotifier>();
+    StateNotifier appstate = context.watch<StateNotifier>();
     return FutureBuilder<List>(
       key: _key,
       future: _products,

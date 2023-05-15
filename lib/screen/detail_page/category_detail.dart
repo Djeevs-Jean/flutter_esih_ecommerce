@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/utils/app_theme.dart';
+import 'package:flutter_ecommerce/utils.dart';
 import 'package:flutter_ecommerce/_widget/_widget_product.dart';
 import 'package:flutter_ecommerce/service/api_service.dart';
 
@@ -17,7 +17,7 @@ class CategoryDetail extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(16),
-            child: Text(category, style: AppTheme.detailCategoryTitle),
+            child: Text(category, style: UtilsTheme.detailCategoryTitle),
           ),
           ProductListWidget(getProducts: () {
             return APIService.getProductsByCategory(category);
