@@ -112,38 +112,3 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-
-
-/* Drawer(
-  child: ListView(
-    children: [
-      DrawerHeader(
-        decoration: const BoxDecoration(color: Colors.blue),
-        child: Column(
-          children: [
-            const Center(child: Text("ECommerce", style: UtilsTheme.titleDrawer,)),
-            Center(child: state.isLogin() ? Text("Username: ${state.getUser()["username"]}") : Text("Username: ${state.getUser()["id"]}", style: UtilsTheme.titleDrawer,)),
-            const SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
-          ],
-        ),
-      ),
-      ListTile(title: const Text("Connecter"), trailing: const Icon(Icons.login), onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
-      },
-        enabled: !state.isLogin(),
-      ),
-      ListTile(title: const Text("List Product"), trailing: const Icon(Icons.list_alt), onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
-      },),
-      ListTile(title: const Text("Deconnecter"), trailing: const Icon(Icons.logout), onTap: (){
-        state.logout();
-        setState(() {
-          _key = UniqueKey();
-        });
-        //rafrechi paj la
-        print("deconnecter");
-      },
-      enabled: state.isLogin(),),
-    ],
-  ),
-), */
