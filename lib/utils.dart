@@ -35,7 +35,7 @@ class UtilsTheme{
   );
   
   static const TextStyle titleHead = TextStyle(
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.white 
   );
 

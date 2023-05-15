@@ -63,9 +63,9 @@ class _MainScreenState extends State<MainScreen> {
             decoration: const BoxDecoration(color: Colors.blue),
             child: Column(
               children: [
-                Center(child: Text("ECommerce", style: UtilsTheme.titleDrawer,)),
+                const Center(child: Text("ECommerce", style: UtilsTheme.titleDrawer,)),
                 Center(child: state.isLogin() ? Text("Username: ${state.getUser()["username"]}") : Text("Username: ${state.getUser()["id"]}", style: UtilsTheme.titleDrawer,)),
-                SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
+                const SizedBox(height: 20, child: Icon(Icons.eco_outlined, size: 70,),),
               ],
             ),
           ),
@@ -94,7 +94,7 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           TextButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (_) => const PayementPage()));
-          }, child: const Text("PEYE", style: UtilsTheme.titleHead,))
+          }, child: const Text("PEYE", style: UtilsTheme.titleHead, ))
         ],
       ),
     body: listWidget.elementAt(selectedIndex),
