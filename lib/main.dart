@@ -61,14 +61,9 @@ class _MainScreenState extends State<MainScreen> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text('John Doe'),
-            accountEmail: Text('johndoe@example.com'),
-            currentAccountPicture: CircleAvatar(
-              child: Icon(
-                Icons.person,
-                size: 60,
-              ),
-            ),
+            accountName: state.isLogin() ? Text(state.getUser()['username']) : const Text("No User Connected"),
+            accountEmail: const Text('') ,
+            currentAccountPicture: const CircleAvatar(child: Icon(Icons.person,size: 60,),),
           ),
           ListTile(
             leading: const Icon(Icons.login),title: const Text('Login'), onTap: () {
