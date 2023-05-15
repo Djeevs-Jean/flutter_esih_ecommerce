@@ -11,9 +11,17 @@ class PayementPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ElevatedButton(
+              onPressed: (){},
+              child: Image.asset(
+                "assets/moncash.png",
+                width: double.infinity,
+                height: 40,
+              ),
+            ),
             ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.payment), label: const Text("Pay with Paypal")),
             const SizedBox(height: 22,),
-            ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.payment), label: const Text("Pay With MasterCard"),)
+            ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.payment), label: const Text("Pay With MonCash"),)
           ],
         ),
       ),
