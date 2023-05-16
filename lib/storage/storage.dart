@@ -1,5 +1,5 @@
-import 'package:flutter_ecommerce/_models/article.dart';
-import 'package:flutter_ecommerce/service/api_service.dart';
+import '/_models/article.dart';
+import '/service/api_service.dart';
 import 'package:localstorage/localstorage.dart';
 
 class Storage {

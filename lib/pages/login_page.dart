@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/service/api_service.dart';
+import '/service/api_service.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_ecommerce/main.dart';
-import 'package:flutter_ecommerce/utils.dart';
+import '/main.dart';
+import '/utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}):super(key: key);

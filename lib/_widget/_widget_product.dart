@@ -1,9 +1,9 @@
-import 'package:flutter_ecommerce/_models/article.dart';
+import '/_models/article.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_ecommerce/_widget/_widget_btn.dart';
+import '/_widget/_widget_btn.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/utils.dart';
-import 'package:flutter_ecommerce/pages/product_detail.dart';
+import '/utils.dart';
+import '/pages/product_detail.dart';
 
 class ProductSingleWidget extends StatelessWidget {
   final Article article;

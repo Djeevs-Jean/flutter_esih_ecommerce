@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/pages/payment_page.dart';
-import 'package:flutter_ecommerce/_widget/_widget_product.dart';
-import 'package:flutter_ecommerce/service/api_service.dart';
+import '/pages/payment_page.dart';
+import '/_widget/_widget_product.dart';
+import '/service/api_service.dart';
 
 class CategoryDetail extends StatelessWidget {
   final String category;

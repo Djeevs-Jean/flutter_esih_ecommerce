@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/utils.dart';
-import 'package:flutter_ecommerce/storage/storage.dart';
+import '/utils.dart';
+import '/storage/storage.dart';
 
 class WidgetButton extends StatefulWidget {
   final int userId; 

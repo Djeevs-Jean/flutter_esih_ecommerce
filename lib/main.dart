@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/utils.dart';
-import 'package:flutter_ecommerce/pages/home_page.dart';
-import 'package:flutter_ecommerce/pages/login_page.dart';
+import '/utils.dart';
+import '/pages/home_page.dart';
+import '/pages/login_page.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_ecommerce/pages/payment_page.dart';
-import 'package:flutter_ecommerce/pages/productlist_page.dart';
-import 'package:flutter_ecommerce/pages/cart_page.dart';
-import 'package:flutter_ecommerce/pages/favorite_page.dart';
+import '/pages/payment_page.dart';
+import '/pages/productlist_page.dart';
+import '/pages/cart_page.dart';
+import '/pages/favorite_page.dart';
 
 void main() {
   runApp(const MyApp());

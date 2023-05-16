@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/storage/storage.dart';
+import '/storage/storage.dart';
 // class UtilsTheme{
 
 //   static const TextStyle categoryTop = TextStyle(

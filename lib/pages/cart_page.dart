@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/utils.dart';
-import 'package:flutter_ecommerce/_widget/_widget_product.dart';
-import 'package:flutter_ecommerce/storage/storage.dart';
+import '/utils.dart';
+import '/_widget/_widget_product.dart';
+import '/storage/storage.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {

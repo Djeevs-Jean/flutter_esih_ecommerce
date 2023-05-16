@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/storage/storage.dart';
+import '/storage/storage.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_ecommerce/utils.dart';
-import 'package:flutter_ecommerce/_widget/_widget_product.dart';
+import '/utils.dart';
+import '/_widget/_widget_product.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});

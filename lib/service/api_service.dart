@@ -1,4 +1,4 @@
-import 'package:flutter_ecommerce/_models/article.dart';
+import '/_models/article.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
