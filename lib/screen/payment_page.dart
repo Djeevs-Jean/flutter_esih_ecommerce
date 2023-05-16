@@ -11,29 +11,68 @@ class PayementPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-              width: 200,
-              height: 40,
-              child: Row(
-                children: [
-                  Image.asset("assets/moncash.png", height: 40),
-                  const Text("Paiement with monCash")
-                ],
-             ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: InkWell(
+                onTap: () {
+                  // Action when monCash card is tapped
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Image.asset("assets/moncash.png", height: 40),
+                      const SizedBox(width: 10),
+                      const Text("Payment with monCash"),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            
-            // ElevatedButton(
-            //   onPressed: (){},
-            //   child: Image.asset(
-            //     "assets/moncash.png",
-            //     width: double.infinity,
-            //     height: 40,
-            //   ),
-            // ),
-            // ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.payment), label: const Text("Pay with Paypal")),
-            // const SizedBox(height: 22,),
-            // ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.payment), label: const Text("Pay With MonCash"),)
+            const SizedBox(height: 10),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: InkWell(
+                onTap: () {
+                  // Action when paypal card is tapped
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Image.asset("assets/moncash.png", height: 40),
+                      const SizedBox(width: 10),
+                      const Text("Payment with PayPal"),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: InkWell(
+                onTap: () {
+                  // Action when mastercard card is tapped
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Image.asset("assets/paymoncash.png", height: 40),
+                      const SizedBox(width: 10),
+                      const Text("Payment with Mastercard"),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
