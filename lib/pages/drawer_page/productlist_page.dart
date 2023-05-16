@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/utils.dart';
-import 'package:flutter_ecommerce/screen/payment_page.dart';
+import 'package:flutter_ecommerce/pages/payment_page.dart';
 import 'package:flutter_ecommerce/service/api_service.dart';
 import 'package:flutter_ecommerce/_widget/_widget_product.dart';
 
