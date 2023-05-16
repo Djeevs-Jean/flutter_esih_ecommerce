@@ -22,6 +22,7 @@ class ProductSingleWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Center(child: Text(article.category, style: const TextStyle(fontSize: 18, color: Colors.deepPurple, fontFamily: AutofillHints.email),),),
           InkWell(
             onTap: (() => onTapDetailsMeth()),
             child: Image.network(

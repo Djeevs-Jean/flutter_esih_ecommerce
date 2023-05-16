@@ -18,10 +18,10 @@ class CategoryWidgetSingle extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 38, width: 19, child: Icon(Icons.catching_pokemon, size: 12,)),
+            const SizedBox(height: 38, width: 19, child: Icon(Icons.pages, size: 12,)),
             InkWell(
               onTap: (() => {Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: category)))}),
-              child: Text(category, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.blue, ),),
+              child: Text(category, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.deepPurple, ),),
             ),
           ],
       ),
