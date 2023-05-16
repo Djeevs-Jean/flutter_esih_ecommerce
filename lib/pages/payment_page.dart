@@ -68,7 +68,7 @@ class PayementPage extends StatelessWidget {
                     children: [
                       Image.asset("assets/mastercard.png", height: 40),
                       const SizedBox(width: 10),
-                      const Text("Payment with Mastercard"),
+                      const Text("Payment with Mastercard",),
                     ],
                   ),
                 ),

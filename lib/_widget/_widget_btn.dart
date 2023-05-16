@@ -39,7 +39,7 @@ class _WidgetButtonState extends State<WidgetButton> {
             }          
           }, 
           icon: result.data! ?  const Icon(Icons.shopping_cart, size: iconSize,) : const Icon(Icons.shopping_cart_outlined, size: iconSize,),
-          color: Colors.deepPurple);
+          color: Colors.amber);
         } else if(result.hasError) {
           return Text("${result.error}");
         } else {
@@ -62,7 +62,7 @@ class _WidgetButtonState extends State<WidgetButton> {
             }          
           }, 
           icon: result.data! ?  const Icon(Icons.favorite, size: iconSize,) : const Icon(Icons.favorite_outline, size: iconSize,),
-          color: Colors.deepPurple,);
+          color: Colors.amber,);
         } else if(result.hasError) {
           return Text("${result.error}");
         } else {

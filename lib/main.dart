@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       title: 'Flutter E-commerce',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.amber,
       ),
       home: const MainScreen()
       )
@@ -40,7 +40,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Widget> listWidget = const[ CartPage(), HomePageScreen(), FavoritePage(),];
-  List<String> listWidgetTitle = ["Cart Page", "FedCommerce", "Favorite Page"];
+  List<String> listWidgetTitle = ["Cart Page", "JEcommerce", "Favorite Page"];
   int selectedIndex = 1;
   late Key _key;
 
