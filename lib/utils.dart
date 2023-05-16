@@ -1,47 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/storage/storage.dart';
-class UtilsTheme{
+// class UtilsTheme{
 
-  static const swatchApp = Colors.accents;
+//   static const TextStyle categoryTop = TextStyle(
+//     fontSize: 20,
+//     fontWeight: FontWeight.bold,color: 
+//     Colors.deepPurple,
+//   );
 
-  static const TextStyle categoryTop = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,color: 
-    Colors.deepPurple,
-  );
-
-  static const TextStyle detailCategoryTitle = TextStyle(
-    fontSize: 22,
-    fontWeight: FontWeight.bold,
-    // color:Colors.blue,
-  );
+//   static const TextStyle detailCategoryTitle = TextStyle(
+//     fontSize: 22,
+//     fontWeight: FontWeight.bold,
+//     // color:Colors.blue,
+//   );
 
 
-  static const TextStyle titleDrawer = TextStyle(
-    fontSize: 22,
-    color: Colors.white 
-  );
+//   static const TextStyle titleDrawer = TextStyle(
+//     fontSize: 22,
+//     color: Colors.white 
+//   );
 
-  static const TextStyle desc = TextStyle(
-    fontSize: 12,
-  );
+//   static const TextStyle desc = TextStyle(
+//     fontSize: 12,
+//   );
 
-  static const TextStyle titleTopcategorie = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-  );
+//   static const TextStyle titleTopcategorie = TextStyle(
+//     fontSize: 16,
+//     fontWeight: FontWeight.w400,
+//   );
 
-  static const TextStyle titleStyleArticle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-  );
+//   static const TextStyle titleStyleArticle = TextStyle(
+//     fontSize: 16,
+//     fontWeight: FontWeight.bold,
+//   );
   
-  static const TextStyle titleHead = TextStyle(
-    fontSize: 18,
-    color: Colors.white 
-  );
+//   static const TextStyle titleHead = TextStyle(
+//     fontSize: 18,
+//     color: Colors.white 
+//   );
 
-  }
+//   }
   
 class StateNotifier extends ChangeNotifier {
   MyAppState() {

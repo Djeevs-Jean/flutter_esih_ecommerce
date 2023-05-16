@@ -21,14 +21,20 @@ class _HomePageScreenState extends State<HomePageScreen> {
           Container(
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10,),
-            child: const Text("Top Categories", style: UtilsTheme.categoryTop),
+            child: const Text("Top Categories", style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          )),
           ),
           const CategoryListWidget(getCategories: APIService.getTopCategories),
 
           Container(
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            child: const Text("Top Products", style: UtilsTheme.categoryTop),
+            child: const Text("Top Products", style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          )),
           ), 
           const ProductListWidget(getProducts: APIService.getTopProducts),
         ],

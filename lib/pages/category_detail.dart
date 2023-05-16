@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/pages/payment_page.dart';
-import 'package:flutter_ecommerce/utils.dart';
 import 'package:flutter_ecommerce/_widget/_widget_product.dart';
 import 'package:flutter_ecommerce/service/api_service.dart';
 
@@ -15,7 +14,10 @@ class CategoryDetail extends StatelessWidget {
       actions: [
           TextButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (_) => const PayementPage()));
-          }, child: const Text("PEYE", style: UtilsTheme.titleHead, ))
+          }, child: const Text("PEYE", style: TextStyle(
+          fontSize: 22,
+          color: Colors.white 
+        ), ))
         ],
       ),
       body: SingleChildScrollView(
@@ -24,7 +26,11 @@ class CategoryDetail extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(16),
-            child: Text(category, style: UtilsTheme.detailCategoryTitle),
+            child: Text(category, style:TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    // color:Colors.blue,
+  )),
           ),
           ProductListWidget(getProducts: () {
             return APIService.getProductsByCategory(category);

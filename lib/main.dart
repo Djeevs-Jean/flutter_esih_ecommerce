@@ -92,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           TextButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (_) => const PayementPage()));
-          }, child: const Text("PEYE", style: UtilsTheme.titleHead, ))
+          }, child: const Text("PEYE", style: TextStyle(fontSize: 18, color: Colors.white), ))
         ],
       ),
     body: listWidget.elementAt(selectedIndex),
