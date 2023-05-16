@@ -77,7 +77,7 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
                     _categories = widget.getCategories();
                     _key = UniqueKey();
                   });
-                }, child: const Text("Retry"))
+                }, child: const Text("Re"))
               ],
             ),
           );

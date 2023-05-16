@@ -138,7 +138,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
                     _products = widget.getProducts();
                     _key = UniqueKey();
                   });
-                }, child: const Text("Retry"))
+                }, child: const Text("Reload"))
               ],
             ),
           );
