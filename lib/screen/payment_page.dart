@@ -14,6 +14,7 @@ class PayementPage extends StatelessWidget {
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
+                
               ),
               child: InkWell(
                 onTap: () {
@@ -44,7 +45,7 @@ class PayementPage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Image.asset("assets/moncash.png", height: 40),
+                      Image.asset("assets/paypall.png", height: 40),
                       const SizedBox(width: 10),
                       const Text("Payment with PayPal"),
                     ],
@@ -65,7 +66,7 @@ class PayementPage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Image.asset("assets/paymoncash.png", height: 40),
+                      Image.asset("assets/mastercard.png", height: 40),
                       const SizedBox(width: 10),
                       const Text("Payment with Mastercard"),
                     ],

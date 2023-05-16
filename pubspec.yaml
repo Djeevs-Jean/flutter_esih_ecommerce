@@ -65,7 +65,8 @@ flutter:
 
   assets:
     - assets/moncash.png
-    - assets/paymoncash.png
+    - assets/paypall.png
+    - assets/mastercard.png
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
