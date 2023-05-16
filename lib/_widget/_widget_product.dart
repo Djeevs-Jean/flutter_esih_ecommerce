@@ -81,8 +81,8 @@ class _ProductListWidgetState extends State<ProductListWidget> {
     _key = UniqueKey();
   }
 
-  void navigateToArticleDetailPage(Article article) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(article: article)));
+  void navigateToArticleDetailPage(Article article, dynamic userId) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(article: article, userId: userId,)));
   }
 
   @override
@@ -118,7 +118,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
                   userId: appstate.isLogin() ? appstate.getUser()['id'] : -1,
                     article: products.data![index],
                       onTapDetailsMeth: () {
-                        navigateToArticleDetailPage(products.data![index]);
+                        navigateToArticleDetailPage(products.data![index], appstate.isLogin() ? appstate.getUser()['id'] : -1);
                       },
                     );
                 },
