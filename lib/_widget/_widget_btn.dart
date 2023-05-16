@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/utils.dart';
 import 'package:flutter_ecommerce/storage/storage.dart';
 
 class WidgetButton extends StatefulWidget {
@@ -38,7 +39,7 @@ class _WidgetButtonState extends State<WidgetButton> {
             }          
           }, 
           icon: result.data! ?  const Icon(Icons.shopping_cart, size: iconSize,) : const Icon(Icons.shopping_cart_outlined, size: iconSize,),
-          color: Colors.blue,);
+          color: Colors.deepPurple);
         } else if(result.hasError) {
           return Text("${result.error}");
         } else {
@@ -61,7 +62,7 @@ class _WidgetButtonState extends State<WidgetButton> {
             }          
           }, 
           icon: result.data! ?  const Icon(Icons.favorite, size: iconSize,) : const Icon(Icons.favorite_outline, size: iconSize,),
-          color: Colors.blue,);
+          color: Colors.deepPurple,);
         } else if(result.hasError) {
           return Text("${result.error}");
         } else {

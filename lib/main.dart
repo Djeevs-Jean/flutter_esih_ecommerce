@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       title: 'Flutter E-commerce',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: const MainScreen()
       )

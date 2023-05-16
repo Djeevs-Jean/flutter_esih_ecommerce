@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/storage/storage.dart';
 class UtilsTheme{
 
+  static const swatchApp = Colors.accents;
+
   static const TextStyle categoryTop = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,color: 
-    Colors.blue,
+    Colors.deepPurple,
   );
 
   static const TextStyle detailCategoryTitle = TextStyle(
