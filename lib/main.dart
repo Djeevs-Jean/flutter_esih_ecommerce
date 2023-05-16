@@ -62,8 +62,8 @@ class _MainScreenState extends State<MainScreen> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: state.isLogin() ? Text(state.getUser()['username']) : const Text("No User Connected"),
-            accountEmail: const Text('') ,
-            currentAccountPicture: const CircleAvatar(child: Icon(Icons.person,size: 60,),),
+            currentAccountPicture: const CircleAvatar(child: Icon(Icons.verified_user,size: 60,),),
+            accountEmail: const Text('FedEcommerce', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),) ,
           ),
           ListTile(
             leading: const Icon(Icons.login),title: const Text('Login'), onTap: () {
