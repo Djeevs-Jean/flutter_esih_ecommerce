@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_ecommerce/storage/storage.dart';
-import 'package:flutter_ecommerce/models/article.dart';
+import 'package:flutter_ecommerce/_models/article.dart';
 
 class ProductDetail extends StatefulWidget {
   final Article article;
