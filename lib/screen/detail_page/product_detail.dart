@@ -5,7 +5,7 @@ import 'package:flutter_ecommerce/storage/storage.dart';
 import 'package:flutter_ecommerce/models/article.dart';
 
 class ProductDetail extends StatefulWidget {
-  final Article article;
+  final Product article;
   final int userId;
   const ProductDetail({Key? key, required this.article, required this.userId}) : super(key: key);
 

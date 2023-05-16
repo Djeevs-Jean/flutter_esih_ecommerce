@@ -6,7 +6,7 @@ import 'package:flutter_ecommerce/utils.dart';
 import 'package:flutter_ecommerce/screen/detail_page/product_detail.dart';
 
 class ProductSingleWidget extends StatelessWidget {
-  final Article article;
+  final Product article;
   final int userId;
   final VoidCallback onTapDetailsMeth;
   const ProductSingleWidget({Key? key, required this.article, required this.onTapDetailsMeth, required this.userId }) : super(key: key);
@@ -64,7 +64,7 @@ class ProductSingleWidget extends StatelessWidget {
 }
 
 class ProductListWidget extends StatefulWidget {
-  final Future<List<Article>> Function() getProducts;
+  final Future<List<Product>> Function() getProducts;
   const ProductListWidget({Key? key, required this.getProducts}) : super(key: key);
 
   @override
@@ -82,7 +82,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
     _key = UniqueKey();
   }
 
-  void navigateToArticleDetailPage(Article article, dynamic userId) {
+  void navigateToArticleDetailPage(Product article, dynamic userId) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(article: article, userId: userId,)));
   }
 

@@ -32,10 +32,10 @@ class APIService {
     }
   }
 
-  static Future<List<Article>> getProducts() async {
+  static Future<List<Product>> getProducts() async {
     try {
       final response = await get("$_host/products") as List<dynamic>;    
-      List<Article> listArticles = response.map((item) => Article.fromJson(item)).toList();
+      List<Product> listArticles = response.map((item) => Product.fromJson(item)).toList();
       return listArticles;
     } catch (e) {
       print('Error: $e');
@@ -53,10 +53,10 @@ class APIService {
     }
   }
 
-  static Future<List<Article>> getTopProducts() async {
+  static Future<List<Product>> getTopProducts() async {
     try {
       final response = await get("$_host/products?sort=desc&limit=6") as List<dynamic>;    
-      List<Article> listArticles = response.map((item) => Article.fromJson(item)).toList();
+      List<Product> listArticles = response.map((item) => Product.fromJson(item)).toList();
       return listArticles;
     } catch (e) {
       print('Error: $e');
@@ -64,10 +64,10 @@ class APIService {
     }
   }
 
-  static Future<List<Article>> getProductsByCategory(String categoryName) async {
+  static Future<List<Product>> getProductsByCategory(String categoryName) async {
     try {
       final response = await get("$_host/products/category/$categoryName") as List<dynamic>;    
-      List<Article> listArticles = response.map((item) => Article.fromJson(item)).toList();
+      List<Product> listArticles = response.map((item) => Product.fromJson(item)).toList();
       return listArticles;
     } catch (e) {
       print('Error: $e');

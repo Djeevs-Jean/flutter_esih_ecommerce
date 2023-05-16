@@ -27,7 +27,7 @@ class Storage {
   static Future<List<dynamic>> _getObject(String key) async {
     await _storage.ready;
     List idList = await _storage.getItem(key) ?? [];
-    final List<Article> products = await APIService.getProducts();
+    final List<Product> products = await APIService.getProducts();
     products.retainWhere((element) => idList.contains(element.id));
     return products;
   }
@@ -50,8 +50,8 @@ class Storage {
   }
 
   /// Obtenir la liste des articles qui sont dans le Favorite en stockage local pour le user connecter
-  static Future<List<Article>> getListFavoriteProdcut(int userId) async {
-    return await _getObject("$userId$_favKey") as List<Article>;
+  static Future<List<Product>> getListFavoriteProdcut(int userId) async {
+    return await _getObject("$userId$_favKey") as List<Product>;
   }
 
   static Future<void> toggleFavoriteProduct(int userId, dynamic productId) async {
@@ -63,8 +63,8 @@ class Storage {
   }
 
   /// Obtenir la liste des articles qui sont dans le Panier en stockage local pour le user connecter
-  static Future<List<Article>> getListCartsProduct(int userId) async {
-    return await _getObject("$userId$_cartKey") as List<Article>;
+  static Future<List<Product>> getListCartsProduct(int userId) async {
+    return await _getObject("$userId$_cartKey") as List<Product>;
   }
 
   static Future<void> toggleCartsProduct(int userId, dynamic productId) async {
