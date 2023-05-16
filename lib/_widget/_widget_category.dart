@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/pages/detail_page/category_detail.dart';
+import 'package:flutter_ecommerce/pages/category_detail.dart';
 
 class CategoryWidgetSingle extends StatelessWidget {
   final String category;

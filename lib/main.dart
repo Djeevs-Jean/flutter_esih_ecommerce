@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/utils.dart';
 import 'package:flutter_ecommerce/pages/home_page.dart';
-import 'package:flutter_ecommerce/pages/auth_page/login_page.dart';
+import 'package:flutter_ecommerce/pages/login_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_ecommerce/pages/payment_page.dart';
 import 'package:flutter_ecommerce/pages/drawer_page/productlist_page.dart';
