@@ -1,4 +1,4 @@
-import 'package:flutter_ecommerce/models/article.dart';
+import 'package:flutter_ecommerce/models/model.dart';
 import 'package:flutter_ecommerce/service/api_service.dart';
 import 'package:localstorage/localstorage.dart';
 

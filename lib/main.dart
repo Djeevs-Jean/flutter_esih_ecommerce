@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       create: (context) => StateNotifier(),
       child: MaterialApp(
       title: 'Flutter E-commerce',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),

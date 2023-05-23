@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/models/model.dart';
 import 'package:flutter_ecommerce/screen/detail_page/category_detail.dart';
 
 class CategoryWidgetSingle extends StatelessWidget {
-  final String category;
+  final Category category;
   final VoidCallback onTapDetail;
   const CategoryWidgetSingle({Key? key, required this.category, required this.onTapDetail}) : super(key: key);
 
@@ -21,7 +22,7 @@ class CategoryWidgetSingle extends StatelessWidget {
             const SizedBox(height: 38, width: 19, child: Icon(Icons.pages, size: 12,)),
             InkWell(
               onTap: (() => {Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryDetail(category: category)))}),
-              child: Text(category, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.deepPurple, ),),
+              child: Text(category.name!, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.deepPurple, ),),
             ),
           ],
       ),

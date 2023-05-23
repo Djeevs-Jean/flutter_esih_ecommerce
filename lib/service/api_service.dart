@@ -1,4 +1,4 @@
-import 'package:flutter_ecommerce/models/article.dart';
+import 'package:flutter_ecommerce/models/model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -22,15 +22,6 @@ class APIService {
     );
     return response;
   }
-  
-  static Future<bool> login(Map<String, String> value) async {
-    final response = await post("$_host/auth/login", value);
-    if(response.statusCode==200 && jsonDecode(response.body)['token'] != null) {
-      return true;
-    }else {
-      return false;
-    }
-  }
 
   static Future<List<Product>> getProducts() async {
     try {
@@ -43,10 +34,11 @@ class APIService {
     }
   }
 
-  static Future<List<dynamic>> getTopCategories() async {
+  static Future<List<Category>> getTopCategories() async {
     try {
       final response = await get("$_host/products/categories?sort=desc&limit=4") as List<dynamic>;    
-      return response;
+      final listCategories = response.map((e) => Category.fromJson(e)).toList();
+      return listCategories;
     } catch (e) {
       print('Error: $e');
       return [];
@@ -85,4 +77,14 @@ class APIService {
       return [];
     }
   }
+    
+  static Future<bool> login(Map<String, String> value) async {
+    final response = await post("$_host/auth/login", value);
+    if(response.statusCode==200 && jsonDecode(response.body)['token'] != null) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+
 }
